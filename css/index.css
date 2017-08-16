@@ -1,0 +1,110 @@
+#body {
+    background-image: url(../img/backgroundimg.jpg);
+    background-size: 100% auto;
+}
+
+#top {
+    display: flex;
+    padding-top: 10px;
+    margin-bottom: 0px;
+    justify-content: space-between;
+}
+
+#logo {
+    margin-left: 100px;
+}
+
+#menu {
+    margin: 5px;
+    border-radius: 5px;
+    background: #4584b1;
+    color: #fff;
+    padding: 15px;
+    margin-right: 100px;
+    margin-top: 5px;
+    margin-bottom: 0px;
+}
+
+#menu:hover {
+    background-color: #ddd;
+    cursor: pointer;
+}
+
+#main {
+    height: 700px;
+    margin-top: 0px;
+    padding-top: 0px;
+}
+
+#mes1 {
+    font-size: 40px;
+    text-align: center;
+    padding-top: 50px;
+    padding-bottom: 0px;
+}
+
+#mes2 {
+    font-size: 20px;
+    padding-top: 0px;
+    text-align: center
+}
+
+#linklist {
+    display: flex;
+    margin-top: 120px;
+    justify-content: space-around;
+}
+
+#search {
+    text-align: center;
+    width: 250px;
+    margin-left: 200px;
+    margin: 20px;
+    border-radius: 5px;
+    background: #ffffff;
+    color: #000080;
+    padding: 15px;
+}
+
+#mes3 {
+    margin-top: 5px;
+    margin-bottom: 0px;
+}
+
+#mes4 {
+    font-size: 30px;
+    margin-top: 0px;
+    margin-bottom: 5px;
+}
+
+#scout {
+    text-align: center;
+    width: 250px;
+    margin-left: 200px;
+    margin: 20px;
+    border-radius: 5px;
+    background: #ffffff;
+    color: #000080;
+    padding: 15px;
+}
+
+#mes5 {
+    margin-top: 5px;
+    margin-bottom: 0px;
+}
+
+#mes6 {
+    font-size: 30px;
+    margin-top: 0px;
+    margin-bottom: 5px;
+}
+
+#search:hover {
+    background-color: #ddd;
+    cursor: pointer;
+}
+
+#scout:hover {
+    background-color: #ddd;
+    cursor: pointer;
+}

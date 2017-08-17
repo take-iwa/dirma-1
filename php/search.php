@@ -22,9 +22,34 @@
 
     </style>
 
+    <script type="text/javascript">
+        function functionName() {
+            var select1 = document.forms.formName.selectName1; //変数select1を宣言
+            var select2 = document.forms.formName.selectName2; //変数select2を宣言
+
+            select2.options.length = 0; // 選択肢の数がそれぞれに異なる場合、これが重要
+
+            if (select1.options[select1.selectedIndex].value == "kanri") {
+                select2.options[0] = new Option("りんご");
+                select2.options[1] = new Option("みかん");
+                select2.options[2] = new Option("オレンジ");
+            } else if (select1.options[select1.selectedIndex].value == "marketing") {
+                select2.options[0] = new Option("キャベツ");
+                select2.options[1] = new Option("きゅうり");
+                select2.options[2] = new Option("にんんじん");
+                select2.options[3] = new Option("たまねぎ");
+            } else if (select1.options[select1.selectedIndex].value == "it") {
+                select2.options[0] = new Option("豚肉");
+                select2.options[1] = new Option("牛肉");
+            }
+        };
+
+    </script>
+
 </head>
 
-<body>
+
+<body bgcolor onLoad="functionName()">
     <div id="body">
         <div id="top">
             <p id="logo">Dirma logo</p>
@@ -33,12 +58,12 @@
 
         <div id="job">
             <p id="jobs">求人内容で検索</p>
-            <form action="result.php" method="post">
+            <form action="result.php" method="post" name="formName">
 
                 <div id="jobselect">
 
                     <p class="stitle" id="sort">職種</p>
-                    <select name="jobtypes" class="jobtypes">
+                    <select name="selectName1" class="jobtypes" onChange="functionName()">
 <option value="info">職種分類を選択</option>
 <option value="kanri">管理部門</option>
 <option value="marketing">商品企画・マーケティング</option>
@@ -54,6 +79,7 @@
 
                     <p class="stitle">職種詳細</p>
                     <select name="jobdetail" id="jobdetail" class="jobtypes"></select>
+
 
 
                     <p class="stitle">勤務地</p>
@@ -170,5 +196,8 @@
     </div>
 
 </body>
+
+
+
 
 </html>

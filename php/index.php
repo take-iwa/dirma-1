@@ -16,7 +16,7 @@
 <body>
     <div id="body">
         <div id="top">
-            <p id="logo">Dirma logo</p>
+            <a href="index.php"><img src="../img/dirmalogo.png" alt="logo" width="100px" height="60px" id="dlogo"></a>
             <p id="menu">ログイン</p>
         </div>
 

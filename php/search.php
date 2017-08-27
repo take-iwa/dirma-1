@@ -5,8 +5,9 @@
     <meta charset="UTF-8">
     <title>Document</title>
     <link rel="stylesheet" href="../css/search.css">
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
     <style type="text/css">
-        <!-- a {
+        a {
             text-decoration: none;
         }
         
@@ -17,68 +18,87 @@
         a:visited {
             color: #330066;
         }
-        
-        -->
 
     </style>
-
-    <script type="text/javascript">
-        function functionName() {
-            var select1 = document.forms.formName.selectName1; //変数select1を宣言
-            var select2 = document.forms.formName.selectName2; //変数select2を宣言
-
-            select2.options.length = 0; // 選択肢の数がそれぞれに異なる場合、これが重要
-
-            if (select1.options[select1.selectedIndex].value == "kanri") {
-                select2.options[0] = new Option("りんご");
-                select2.options[1] = new Option("みかん");
-                select2.options[2] = new Option("オレンジ");
-            } else if (select1.options[select1.selectedIndex].value == "marketing") {
-                select2.options[0] = new Option("キャベツ");
-                select2.options[1] = new Option("きゅうり");
-                select2.options[2] = new Option("にんんじん");
-                select2.options[3] = new Option("たまねぎ");
-            } else if (select1.options[select1.selectedIndex].value == "it") {
-                select2.options[0] = new Option("豚肉");
-                select2.options[1] = new Option("牛肉");
-            }
-        };
-
-    </script>
 
 </head>
 
 
-<body bgcolor onLoad="functionName()">
+<body>
     <div id="body">
         <div id="top">
-            <p id="logo">Dirma logo</p>
+            <a href="index.php"><img src="../img/dirmalogo.png" alt="logo" width="100px" height="60px" id="dlogo"></a>
             <p id="menu">ログイン</p>
         </div>
 
         <div id="job">
             <p id="jobs">求人内容で検索</p>
-            <form action="result.php" method="post" name="formName">
+            <form action="selectresult.php" method="post">
 
                 <div id="jobselect">
 
-                    <p class="stitle" id="sort">職種</p>
+                    <!-- <p class="stitle" id="sort">職種</p>
                     <select name="selectName1" class="jobtypes" onChange="functionName()">
-<option value="info">職種分類を選択</option>
-<option value="kanri">管理部門</option>
+<option value="" selected="selected">職種分類を選択</option>
+<option value="kanri">管理部門・事業企画</option>
 <option value="marketing">商品企画・マーケティング</option>
-<option value="businessplan">事業企画・事業開発</option>
 <option value="it">ITエンジニア</option>
 <option value="web">WEB系クリエイティブ</option>
 <option value="emc">電気・機械・化学エンジニア</option>
 <option value="sales">営業・販売・顧客折衝</option>
-<option value="asistant">事務・アシスタント</option>  
-<option value="other">その他</option>  
-    
+<option value="asistant">事務・アシスタント</option>
+<option value="other">その他</option>
+</select> -->
+                    <p class="stitle" id="sort">職種</p>
+
+
+                    <select class="parent jobtypes" name="foo">
+  <option value="" selected="selected">職種分類を選択</option>
+  <option value="kanri">経営企画・事業企画・管理部門</option>
+<option value="marketing">商品企画・マーケティング</option>
+<option value="it">ITエンジニア</option>
+<option value="web">WEB系クリエイティブ</option>
+<option value="emc">電気・機械・化学エンジニア</option>
+<option value="sales">営業・販売・顧客折衝</option>
+<option value="asistant">事務・アシスタント</option>
+<option value="other">その他</option>
+ 
 </select>
 
                     <p class="stitle">職種詳細</p>
-                    <select name="jobdetail" id="jobdetail" class="jobtypes"></select>
+                    <select class="children jobtypes" name="bar" disabled>
+  <option value="" selected="selected">職種詳細</option>
+   
+     <option value="経営企画" data-val="kanri">経営企画</option>
+  <option value="事業企画・開発" data-val="kanri">事業企画・事業開発</option>
+    <option value="経理・財務" data-val="kanri">経理・財務</option>
+  <option value="人事・総務" data-val="kanri">人事・総務</option>
+  <option value="法務・知財" data-val="kanri">法務・知財</option>  
+  <option value="内部統制・内部監査" data-val="kanri">内部統制・内部監査</option>  
+  <option value="広報・IR" data-val="kanri">広報・IR</option>
+  <option value="物流・資材購買" data-val="kanri">物流・資材購買</option>
+  
+  <option value="商品企画" data-val="marketing">商品企画</option>
+  <option value="営業企画・販促企画" data-val="marketing">営業企画・販促企画</option>
+  <option value="マーケティングリサーチ" data-val="marketing">マーケティングリサーチ</option>
+  <option value="広告・宣伝" data-val="marketing">広告・宣伝</option>
+  <option value="PR" data-val="marketing">PR</option>
+  <option value="WEBマーケティング" data-val="marketing">WEBマーケティング</option>
+
+
+  <option value="iOSエンジニア" data-val="it">iOSエンジニア</option>
+    <option value="Androidエンジニア" data-val="it">Androidエンジニア</option>
+  <option value="フロントエンドエンジニア" data-val="it">フロントエンドエンジニア</option>
+  <option value="サーバーサイドエンジニア" data-val="it">サーバーサイドエンジニア</option>
+  <option value="プロジェクトマネージャー" data-val="it">プロジェクトマネージャー</option>
+  <option value="インフラエンジニア" data-val="it">インフラエンジニア</option>
+</select>
+
+
+
+
+                    <!-- <p class="stitle">職種詳細</p>
+                    <select name="jobdetail" id="jobdetail" class="jobtypes"></select> -->
 
 
 
@@ -97,7 +117,7 @@
     <option value="10">群馬県</option>
     <option value="11">埼玉県</option>
     <option value="12">千葉県</option>
-    <option value="13">東京都</option>
+    <option value="東京都">東京都</option>
     <option value="14">神奈川県</option>
     <option value="15">新潟県</option>
     <option value="16">富山県</option>
@@ -142,8 +162,8 @@
     <option value="10">800〜1000万円</option>
     <option value="12">1000〜1200万円</option>
     <option value="14">1200万円〜</option>
-    <option value="xx">非公開</option>  
-        
+    <option value="xx">非公開</option>
+
     </select>
                 </div>
                 <input type="submit" value="求人を検索" id="but">
@@ -157,7 +177,7 @@
             <p id="coms">企業名で検索</p>
             <table width="90%" id="table">
                 <tr>
-                    <td> <a href="indexa.php">Google</a></td>
+                    <td> <a href="indexa.php" id="ggl">Google</a></td>
                     <td> <a href="indexb.php">Apple Japan</a></td>
                     <td> <a href="indexc.php">Amazon Japan</a></td>
                     <td> <a href="indexa.php">日本マイクロソフト</a></td>
@@ -194,6 +214,7 @@
         <div><br><br><br><br></div>
 
     </div>
+    <script src="../script.js"></script>
 
 </body>
 

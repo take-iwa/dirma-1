@@ -1,5 +1,5 @@
 #body {
-    background-image: url(../img/backgroundimg.jpg);
+    background:url(../img/backgroundimg.jpg) 0 0 no-repeat;
     background-size: 100% auto;
 }
 
@@ -15,7 +15,7 @@
     margin-top: 10px;
 }
 
-#menu {
+#signin {
     margin: 5px;
     border-radius: 5px;
     background: #4584b1;
@@ -26,7 +26,23 @@
     margin-bottom: 0px;
 }
 
-#menu:hover {
+#signin:hover {
+    background-color: #ddd;
+    cursor: pointer;
+}
+
+#signup {
+    margin: 5px;
+    border-radius: 5px;
+    background: #4584b1;
+    color: #fff;
+    padding: 15px;
+    margin-right: 10px;
+    margin-top: 5px;
+    margin-bottom: 0px;
+}
+
+#signup:hover {
     background-color: #ddd;
     cursor: pointer;
 }
@@ -34,7 +50,7 @@
 #main {
     height: 700px;
     margin-top: 0px;
-    padding-top: 0px;
+    padding-top: 150px;
 }
 
 #mes1 {
@@ -73,7 +89,7 @@
 }
 
 #mes4 {
-    font-size: 30px;
+    font-size: 25px;
     margin-top: 0px;
     margin-bottom: 5px;
 }
@@ -95,7 +111,7 @@
 }
 
 #mes6 {
-    font-size: 30px;
+    font-size: 25px;
     margin-top: 0px;
     margin-bottom: 5px;
 }
@@ -108,4 +124,19 @@
 #scout:hover {
     background-color: #ddd;
     cursor: pointer;
+}
+
+.navbar-brand {
+  background: url("../img/dirma_logo.png") no-repeat left center;
+  background-size: contain;
+  height: 60px;
+  width: 200px;
+  margin-top: 20px;
+  margin-left: 30px;
+  margin-bottom: 10px;
+}
+
+.navbar-right {
+  margin-top: 25px;
+  margin-right: 30px;
 }

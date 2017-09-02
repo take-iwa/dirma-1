@@ -36,6 +36,17 @@ function isSignin()
 	}
 }
 
+//スカウトか否か
+function isSigninCompany()
+{
+	if (!isset($_SESSION['company_id'])) {
+		// 変数に値がセットされていない場合
+		return false;
+	} else {
+		return true;
+	}
+}
+
 //ユーザーID取得
 function getUserId($email, $password, $db) {
 	$sql = "SELECT id, lpw FROM user_table WHERE email = :email";
@@ -56,6 +67,31 @@ function getUserAll() {
 	$sql = "SELECT * FROM user_table WHERE id = :id";
 	$statement = $db->prepare($sql);
 	$statement->bindValue(':id', $_SESSION['user_id'], PDO::PARAM_INT);
+	$statement->execute();
+	$row = $statement->fetch();
+	return $row;
+}
+
+//会社ID取得
+function getCompanyId($email, $password, $db) {
+	$sql = "SELECT id, password FROM company_table WHERE email = :email";
+	$statement = $db->prepare($sql);
+	$statement->bindValue(':email', $email, PDO::PARAM_STR);
+	$statement->execute();
+	$row = $statement->fetch();
+	if (password_verify($password, $row['password'])) {
+		return $row['id'];
+	} else {
+		return false;
+	}
+}
+
+//ID指定でユーザーテーブルから全部取得()
+function getCompanyAll() {
+	$db = connectDb();
+	$sql = "SELECT * FROM company_table WHERE id = :id";
+	$statement = $db->prepare($sql);
+	$statement->bindValue(':id', $_SESSION['company_id'], PDO::PARAM_INT);
 	$statement->execute();
 	$row = $statement->fetch();
 	return $row;

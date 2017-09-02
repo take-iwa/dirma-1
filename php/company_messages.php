@@ -2,7 +2,7 @@
 require_once 'init.php';
 sessChk();
 
-$user_info = getUserAll();
+$company_info = getCompanyAll();
 
 ?>
 
@@ -46,7 +46,7 @@ $user_info = getUserAll();
         </div>
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav navbar-right">
-            <li id="dashboard" data-toggle="popover" data-content="ダッシュボード"><a href="user_dashboard.php"><span class="glyphicon glyphicon-home" aria-hidden="true"></span></a></li>
+            <li id="dashboard" data-toggle="popover" data-content="ダッシュボード"><a href="company_dashboard.php"><span class="glyphicon glyphicon-home" aria-hidden="true"></span></a></li>
             <li id="notification" data-toggle="popover" data-content="お知らせ"><a href="#"><span class="glyphicon glyphicon-bell" aria-hidden="true"></span></a></li>
             <li id="signout" data-toggle="popover" data-content="ログアウト"><a href="signout.php"><span class="glyphicon glyphicon-log-out" aria-hidden="true"></span></a></li>
           </ul>
@@ -57,10 +57,8 @@ $user_info = getUserAll();
     <div>
         <div class="container mail-area">
           <ul class="nav nav-tabs" role="tablist">
-            <li role="presentation"><a href="user_dashboard.php"><span class="glyphicon glyphicon-tasks" aria-hidden="true"></span> ダッシュボード</a></li>
+            <li role="presentation"><a href="company_dashboard.php"><span class="glyphicon glyphicon-search" aria-hidden="true"></span> 検索</a></li>
             <li role="presentation" class="active"><a href="#"><span class="glyphicon glyphicon-envelope" aria-hidden="true"></span> メッセージ　<span class="badge">3</span></a></li>
-            <li role="presentation"><a href="search.php"><span class="glyphicon glyphicon-search" aria-hidden="true"></span> 求人検索</a></li>
-            <li role="presentation"><a href="user_profile.php"><span class="glyphicon glyphicon-user" aria-hidden="true"></span> プロフィール</a></li>
           </ul>
 
           <div class="mail-box">
@@ -99,11 +97,7 @@ $user_info = getUserAll();
             -->
               <aside class="lg-side">
                   <div class="inbox-head">
-                    <?php if(isset($user_info["family_name"])): ?>
-                      <h4><?=$user_info["family_name"]?> さま</h4>
-                    <?php else : ?>
-                      <h4><?=$user_info["email"]?> さま</h4>
-                    <?php endif; ?>
+                      <h4><?=$company_info["company_name"]?> さま</h4>
                       <form action="#" class="pull-right position">
                           <div class="input-append">
                               <input type="text" class="sr-input" placeholder="Search Mail">

@@ -34,7 +34,7 @@
         <ul class="nav navbar-nav navbar-right">
           <li><a href="signup.php">新規登録</a>
           <li><a href="signin.php">ログイン</a>
-          <li><a href="#">スカウト</a></li>
+          <li><a href="signin_company.php">企業の方</a></li>
         </ul>
       </div>
     </nav>

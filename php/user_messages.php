@@ -39,13 +39,14 @@ sessChk();
             <span class="icon-bar"></span>
           </button>
 
-          <h3>DIRMA</h3>
+          <h3 hidden>DIRMA</h3>
+          <img src="../img/dirma_logo.png" class="logo img-responsive" style="width:5em;margin-left:1em;padding:2px 0">
         </div>
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav navbar-right">
-            <li id="dashboard" data-toggle="popover" data-content="ダッシュボード"><a href="#"><span class="glyphicon glyphicon-home" aria-hidden="true"></span></a></li>
-            <li id="notification" data-toggle="popover" data-content="お知らせ"><a href="#about"><span class="glyphicon glyphicon-bell" aria-hidden="true"></span></a></li>
-            <li id="signout" data-toggle="popover" data-content="ログアウト"><a href="#contact"><span class="glyphicon glyphicon-log-out" aria-hidden="true"></span></a></li>
+            <li id="dashboard" data-toggle="popover" data-content="ダッシュボード"><a href="user_dashboard.php"><span class="glyphicon glyphicon-home" aria-hidden="true"></span></a></li>
+            <li id="notification" data-toggle="popover" data-content="お知らせ"><a href="#"><span class="glyphicon glyphicon-bell" aria-hidden="true"></span></a></li>
+            <li id="signout" data-toggle="popover" data-content="ログアウト"><a href="signout.php"><span class="glyphicon glyphicon-log-out" aria-hidden="true"></span></a></li>
           </ul>
         </div><!--/.nav-collapse -->
       </div>
@@ -54,7 +55,7 @@ sessChk();
     <div>
         <div class="container mail-area">
           <ul class="nav nav-tabs" role="tablist">
-            <li role="presentation"><a href="user_dashboard.php"><span class="glyphicon glyphicon-home" aria-hidden="true"></span> ダッシュボード</a></li>
+            <li role="presentation"><a href="user_dashboard.php"><span class="glyphicon glyphicon-tasks" aria-hidden="true"></span> ダッシュボード</a></li>
             <li role="presentation" class="active"><a href="#"><span class="glyphicon glyphicon-envelope" aria-hidden="true"></span> メッセージ　<span class="badge">3</span></a></li>
             <li role="presentation"><a href="search.php"><span class="glyphicon glyphicon-search" aria-hidden="true"></span> 求人検索</a></li>
             <li role="presentation"><a href="user_profile.php"><span class="glyphicon glyphicon-user" aria-hidden="true"></span> プロフィール</a></li>

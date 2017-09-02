@@ -2,6 +2,8 @@
 require_once 'init.php';
 sessChk();
 
+$user_info = getUserAll();
+
 ?>
 
 <!DOCTYPE html>
@@ -39,13 +41,14 @@ sessChk();
             <span class="icon-bar"></span>
           </button>
 
-          <h3>DIRMA</h3>
+          <h3 hidden>DIRMA</h3>
+          <img src="../img/dirma_logo.png" class="logo img-responsive" style="width:5em;margin-left:1em;padding:2px 0">
         </div>
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav navbar-right">
-            <li id="dashboard" data-toggle="popover" data-content="ダッシュボード"><a href="#"><span class="glyphicon glyphicon-home" aria-hidden="true"></span></a></li>
-            <li id="notification" data-toggle="popover" data-content="お知らせ"><a href="#about"><span class="glyphicon glyphicon-bell" aria-hidden="true"></span></a></li>
-            <li id="signout" data-toggle="popover" data-content="ログアウト"><a href="#contact"><span class="glyphicon glyphicon-log-out" aria-hidden="true"></span></a></li>
+            <li id="dashboard" data-toggle="popover" data-content="ダッシュボード"><a href="user_dashboard.php"><span class="glyphicon glyphicon-home" aria-hidden="true"></span></a></li>
+            <li id="notification" data-toggle="popover" data-content="お知らせ"><a href="#"><span class="glyphicon glyphicon-bell" aria-hidden="true"></span></a></li>
+            <li id="signout" data-toggle="popover" data-content="ログアウト"><a href="signout.php"><span class="glyphicon glyphicon-log-out" aria-hidden="true"></span></a></li>
           </ul>
         </div><!--/.nav-collapse -->
       </div>
@@ -54,7 +57,7 @@ sessChk();
     <div>
         <div class="container main-area">
           <ul class="nav nav-tabs" role="tablist">
-            <li role="presentation"><a href="user_dashboard.php"><span class="glyphicon glyphicon-home" aria-hidden="true"></span> ダッシュボード</a></li>
+            <li role="presentation"><a href="user_dashboard.php"><span class="glyphicon glyphicon-tasks" aria-hidden="true"></span> ダッシュボード</a></li>
             <li role="presentation"><a href="user_messages.php"><span class="glyphicon glyphicon-envelope" aria-hidden="true"></span> メッセージ　<span class="badge">3</span></a></li>
             <li role="presentation"><a href="search.php"><span class="glyphicon glyphicon-search" aria-hidden="true"></span> 求人検索</a></li>
             <li role="presentation" class="active"><a href="#"><span class="glyphicon glyphicon-user" aria-hidden="true"></span> プロフィール</a></li>
@@ -69,22 +72,22 @@ sessChk();
                         <h5>編集項目</h5><hr class="no-margin">
                         <ul class="list-unstyled">
                             <li>
-                                <a href="#intro">
+                                <a href="#account">
                                     <span class="fa fa-angle-double-right text-primary"></span> アカウント設定
                                 </a>
                             </li>
                             <li>
-                                <a href="#setting-up-our-page">
+                                <a href="#basis">
                                     <span class="fa fa-angle-double-right text-primary"></span> 基本情報
                                 </a>
                             </li>
                             <li>
-                                <a href="#getting-started">
+                                <a href="#hope">
                                     <span class="fa fa-angle-double-right text-primary"></span> 希望条件
                                 </a>
                             </li>
                             <li>
-                                <a href="#setting-up-our-page">
+                                <a href="#work">
                                     <span class="fa fa-angle-double-right text-primary"></span> 職務経歴
                                 </a>
                             </li>
@@ -93,78 +96,95 @@ sessChk();
                 </div>
                 <!-- edit form column -->
                 <div class="col-md-8 col-sm-6 col-xs-12 personal-info">
-                    <div class="alert alert-info alert-dismissable" hidden>
+                  <?php if(isset($_GET['r'])):?>
+                    <?php if($_GET['r'] == 1): ?>
+                    <div id="profile_success" class="alert alert-info alert-dismissable">
                         <a class="panel-close close" data-dismiss="alert">×</a>
                         <i class="fa fa-coffee"></i>
-                        This is an <strong>.alert</strong>. Use this to show important messages to the user.
+                        プロフィールが更新されました。
                     </div>
+                    <?php elseif($_GET['r'] == 0): ?>
+                    <div id="profile_error" class="alert alert-danger alert-dismissable">
+                        <a class="panel-close close" data-dismiss="alert">×</a>
+                        <i class="fa fa-coffee"></i>
+                        プロフィールが更新できませんでした。
+                    </div>
+                  <?php endif;endif; ?>
 
-                    <form class="form-horizontal" role="form">
+                    <form id="profile_form" class="form-horizontal" role="form" action="./update_profile.php" method="POST">
                         <!-- Form Name -->
                         <legend>アカウント設定</legend>
                         <div class="form-group">
                             <label class="col-md-3 control-label">メールアドレス:</label>
                             <div class="col-md-6">
-                                <input class="form-control" name="email" placeholder="" type="email">
+                                <input class="form-control" name="email" placeholder="" value="<?=$user_info["email"]?>" type="email">
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="col-md-3 control-label">新しいパスワード:</label>
                             <div class="col-md-4">
-                                <input class="form-control" name="password" placeholder="" type="password">
+                                <input id="pass" class="form-control" name="password" placeholder="" type="password">
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="col-md-3 control-label">パスワード確認:</label>
                             <div class="col-md-4">
-                                <input class="form-control" name="repassword" placeholder="" type="password">
+                                <input id="repass" class="form-control" name="repassword" placeholder="" type="password">
                             </div>
                         </div>
                         <div class="form-group">
+                            <label class="col-md-3 control-label"></label>
                             <div class="col-md-8">
-                                <input class="btn btn-primary" value="更新" type="button">
+                                <button id="account_submit" class="btn btn-primary" value="更新" type="submit">更新</button>
                             </div>
                         </div>
                         <br>
+
                         <!-- Form Name -->
-                        <legend>基本情報</legend>
+                        <legend id="basis">基本情報</legend>
                         <div class="form-group form-horizontal">
                             <label class="col-sm-3 control-label">氏名:</label>
                             <div class="col-sm-4">
-                                <input class="form-control" name="family_name" placeholder="姓" type="text" style="display: inline-block;">
+                                <input class="form-control" name="family_name" placeholder="姓" type="text" value="<?=$user_info["family_name"]?>" style="display: inline-block;">
                             </div>
                             <div class="col-sm-4">
-                                <input class="form-control" name="first_name" placeholder="名" type="text" style="display: inline-block;">
+                                <input class="form-control" name="first_name" placeholder="名" type="text" value="<?=$user_info["first_name"]?>" style="display: inline-block;">
                             </div>
                         </div>
                         <div class="form-group form-horizontal">
                             <label class="col-sm-3 control-label">フリガナ:</label>
                             <div class="col-sm-4">
-                                <input class="form-control" name="family_kana" placeholder="セイ" type="text" style="display: inline-block;">
+                                <input class="form-control" name="family_kana" placeholder="セイ" type="text" value="<?=$user_info["family_kana"]?>" style="display: inline-block;">
                             </div>
                             <div class="col-sm-4">
-                                <input class="form-control" name="first_kana" placeholder="メイ" type="text" style="display: inline-block;">
+                                <input class="form-control" name="first_kana" placeholder="メイ" type="text" value="<?=$user_info["first_kana"]?>" style="display: inline-block;">
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="col-md-3 control-label">生年月日:</label>
                             <div class="col-md-4">
-                                <input class="form-control" name="birthday" type="date">
+                                <input class="form-control" name="birthday" value="<?=$user_info["birthday"]?>" type="date">
                             </div>
                         </div>
                         <div class="form-group form-horizontal">
                             <label class="col-md-3 control-label" for="radios">性別:</label>
                             <div class="col-md-8">
                                 <div class="radio">
-                                    <label for="radios-0">
-                                        <input type="radio" name="gender" id="radios-0" value="0" checked="checked">男性
+                                    <label for="gender-0">
+                                        <input type="radio" name="gender" id="gender-0" value="0" <?= $user_info['gender'] == '0' ? 'checked="checked"' : "" ?>>男性
                                     </label>
                                 </div>
                                 <div class="radio">
-                                    <label for="radios-1">
-                                        <input type="radio" name="gender" id="radios-1" value="1">女性
+                                    <label for="gender-1">
+                                        <input type="radio" name="gender" id="gender-1" value="1" <?= $user_info['gender'] == '1' ? 'checked="checked"' : "" ?>>女性
                                     </label>
                             	</div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="tel" class="col-md-3 control-label">電話番号:</label>
+                            <div class="col-md-4">
+                                <input type="tel" name="tel1" id="tel1" class="form-control" placeholder="080XXXXOOOO" value="<?=$user_info["phone_num"]?>">
                             </div>
                         </div>
                         <div class="form-group">
@@ -172,86 +192,234 @@ sessChk();
                             <div class="col-md-4">
                                 <div class="input-group">
                                     <span class="input-group-addon">〒</span>
-                                    <input type="text" name="zipcode" id="zipcode" class="form-control" placeholder="XXX0000">
+                                    <input type="text" name="zip11" id="zipcode" class="form-control" placeholder="XXX0000" value="<?=$user_info["postal_code"]?>" onKeyUp="AjaxZip3.zip2addr(this,'','prefectures','addr01');">
                                 </div>
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="pref" class="col-md-3 control-label">住所:</label>
                             <div class="col-md-4">
-                                <select name="pref" id="pref" class="form-control">
-                                    <option value="北海道">北海道</option>
-                                    <option value="青森県">青森県</option>
-                                    <option value="岩手県">岩手県</option>
-                                    <option value="宮城県">宮城県</option>
-                                    <option value="秋田県">秋田県</option>
-                                    <option value="山形県">山形県</option>
-                                    <option value="福島県">福島県</option>
-                                    <option value="茨城県">茨城県</option>
-                                    <option value="栃木県">栃木県</option>
-                                    <option value="群馬県">群馬県</option>
-                                    <option value="埼玉県">埼玉県</option>
-                                    <option value="千葉県">千葉県</option>
-                                    <option value="東京都">東京都</option>
-                                    <option value="神奈川県">神奈川県</option>
-                                    <option value="新潟県">新潟県</option>
-                                    <option value="山梨県">山梨県</option>
-                                    <option value="長野県">長野県</option>
-                                    <option value="富山県">富山県</option>
-                                    <option value="石川県">石川県</option>
-                                    <option value="福井県">福井県</option>
-                                    <option value="岐阜県">岐阜県</option>
-                                    <option value="静岡県">静岡県</option>
-                                    <option value="愛知県">愛知県</option>
-                                    <option value="三重県">三重県</option>
-                                    <option value="滋賀県">滋賀県</option>
-                                    <option value="京都府">京都府</option>
-                                    <option value="大阪府">大阪府</option>
-                                    <option value="兵庫県">兵庫県</option>
-                                    <option value="奈良県">奈良県</option>
-                                    <option value="和歌山県">和歌山県</option>
-                                    <option value="鳥取県">鳥取県</option>
-                                    <option value="島根県">島根県</option>
-                                    <option value="岡山県">岡山県</option>
-                                    <option value="広島県">広島県</option>
-                                    <option value="山口県">山口県</option>
-                                    <option value="徳島県">徳島県</option>
-                                    <option value="香川県">香川県</option>
-                                    <option value="愛媛県">愛媛県</option>
-                                    <option value="高知県">高知県</option>
-                                    <option value="福岡県">福岡県</option>
-                                    <option value="佐賀県">佐賀県</option>
-                                    <option value="長崎県">長崎県</option>
-                                    <option value="熊本県">熊本県</option>
-                                    <option value="大分県">大分県</option>
-                                    <option value="宮崎県">宮崎県</option>
-                                    <option value="鹿児島県">鹿児島県</option>
-                                    <option value="沖縄県">沖縄県</option>
+                              <select name="prefectures" id="pref" class="form-control">
+                                <option value="北海道" <?= $user_info['prefectures'] == '北海道' ? 'selected' : "" ?>>北海道</option>
+                                <option value="青森県" <?= $user_info['prefectures'] == '青森県' ? 'selected' : "" ?>>青森県</option>
+                                <option value="岩手県" <?= $user_info['prefectures'] == '岩手県' ? 'selected' : "" ?>>岩手県</option>
+                                <option value="宮城県" <?= $user_info['prefectures'] == '宮城県' ? 'selected' : "" ?>>宮城県</option>
+                                <option value="秋田県" <?= $user_info['prefectures'] == '秋田県' ? 'selected' : "" ?>>秋田県</option>
+                                <option value="山形県" <?= $user_info['prefectures'] == '山形県' ? 'selected' : "" ?>>山形県</option>
+                                <option value="福島県" <?= $user_info['prefectures'] == '福島県' ? 'selected' : "" ?>>福島県</option>
+                                <option value="茨城県" <?= $user_info['prefectures'] == '茨城県' ? 'selected' : "" ?>>茨城県</option>
+                                <option value="栃木県" <?= $user_info['prefectures'] == '栃木県' ? 'selected' : "" ?>>栃木県</option>
+                                <option value="群馬県" <?= $user_info['prefectures'] == '群馬県' ? 'selected' : "" ?>>群馬県</option>
+                                <option value="埼玉県" <?= $user_info['prefectures'] == '埼玉県' ? 'selected' : "" ?>>埼玉県</option>
+                                <option value="千葉県" <?= $user_info['prefectures'] == '千葉県' ? 'selected' : "" ?>>千葉県</option>
+                                <option value="東京都" <?= $user_info['prefectures'] == '東京都' ? 'selected' : "" ?>>東京都</option>
+                                <option value="神奈川県" <?= $user_info['prefectures'] == '神奈川県' ? 'selected' : "" ?>>神奈川県</option>
+                                <option value="新潟県" <?= $user_info['prefectures'] == '新潟県' ? 'selected' : "" ?>>新潟県</option>
+                                <option value="山梨県" <?= $user_info['prefectures'] == '山梨県' ? 'selected' : "" ?>>山梨県</option>
+                                <option value="長野県" <?= $user_info['prefectures'] == '長野県' ? 'selected' : "" ?>>長野県</option>
+                                <option value="富山県" <?= $user_info['prefectures'] == '富山県' ? 'selected' : "" ?>>富山県</option>
+                                <option value="石川県" <?= $user_info['prefectures'] == '石川県' ? 'selected' : "" ?>>石川県</option>
+                                <option value="福井県" <?= $user_info['prefectures'] == '福井県' ? 'selected' : "" ?>>福井県</option>
+                                <option value="岐阜県" <?= $user_info['prefectures'] == '岐阜県' ? 'selected' : "" ?>>岐阜県</option>
+                                <option value="静岡県" <?= $user_info['prefectures'] == '静岡県' ? 'selected' : "" ?>>静岡県</option>
+                                <option value="愛知県" <?= $user_info['prefectures'] == '愛知県' ? 'selected' : "" ?>>愛知県</option>
+                                <option value="三重県" <?= $user_info['prefectures'] == '三重県' ? 'selected' : "" ?>>三重県</option>
+                                <option value="滋賀県" <?= $user_info['prefectures'] == '滋賀県' ? 'selected' : "" ?>>滋賀県</option>
+                                <option value="京都府" <?= $user_info['prefectures'] == '京都府' ? 'selected' : "" ?>>京都府</option>
+                                <option value="大阪府" <?= $user_info['prefectures'] == '大阪府' ? 'selected' : "" ?>>大阪府</option>
+                                <option value="兵庫県" <?= $user_info['prefectures'] == '兵庫県' ? 'selected' : "" ?>>兵庫県</option>
+                                <option value="奈良県" <?= $user_info['prefectures'] == '奈良県' ? 'selected' : "" ?>>奈良県</option>
+                                <option value="和歌山県" <?= $user_info['prefectures'] == '和歌山県' ? 'selected' : "" ?>>和歌山県</option>
+                                <option value="鳥取県" <?= $user_info['prefectures'] == '鳥取県' ? 'selected' : "" ?>>鳥取県</option>
+                                <option value="島根県" <?= $user_info['prefectures'] == '島根県' ? 'selected' : "" ?>>島根県</option>
+                                <option value="岡山県" <?= $user_info['prefectures'] == '岡山県' ? 'selected' : "" ?>>岡山県</option>
+                                <option value="広島県" <?= $user_info['prefectures'] == '広島県' ? 'selected' : "" ?>>広島県</option>
+                                <option value="山口県" <?= $user_info['prefectures'] == '山口県' ? 'selected' : "" ?>>山口県</option>
+                                <option value="徳島県" <?= $user_info['prefectures'] == '徳島県' ? 'selected' : "" ?>>徳島県</option>
+                                <option value="香川県" <?= $user_info['prefectures'] == '香川県' ? 'selected' : "" ?>>香川県</option>
+                                <option value="愛媛県" <?= $user_info['prefectures'] == '愛媛県' ? 'selected' : "" ?>>愛媛県</option>
+                                <option value="高知県" <?= $user_info['prefectures'] == '高知県' ? 'selected' : "" ?>>高知県</option>
+                                <option value="福岡県" <?= $user_info['prefectures'] == '福岡県' ? 'selected' : "" ?>>福岡県</option>
+                                <option value="佐賀県" <?= $user_info['prefectures'] == '佐賀県' ? 'selected' : "" ?>>佐賀県</option>
+                                <option value="長崎県" <?= $user_info['prefectures'] == '長崎県' ? 'selected' : "" ?>>長崎県</option>
+                                <option value="熊本県" <?= $user_info['prefectures'] == '熊本県' ? 'selected' : "" ?>>熊本県</option>
+                                <option value="大分県" <?= $user_info['prefectures'] == '大分県' ? 'selected' : "" ?>>大分県</option>
+                                <option value="宮崎県" <?= $user_info['prefectures'] == '宮崎県' ? 'selected' : "" ?>>宮崎県</option>
+                                <option value="鹿児島県" <?= $user_info['prefectures'] == '鹿児島県' ? 'selected' : "" ?>>鹿児島県</option>
+                                <option value="沖縄県" <?= $user_info['prefectures'] == '沖縄県' ? 'selected' : "" ?>>沖縄県</option>
                                 </select>
                             </div>
                         </div>
                         <div class="form-group">
                             <div class="col-md-8 col-md-offset-3">
-                                <input type="text" name="addr1" id="addr1" class="form-control" placeholder="市区町村名">
+                                <input type="text" name="addr01" id="addr1" class="form-control" placeholder="市区町村名" value="<?=$user_info["address_before"]?>">
                                 <p class="help-block">住所は2つに分けてご記入ください。</p>
-                                <input type="text" name="addr2" id="addr2" class="form-control" placeholder="番地 建物名">
+                                <input type="text" name="addr02" id="addr2" class="form-control" placeholder="番地 建物名" value="<?=$user_info["address_after"]?>">
                                 <p class="help-block">番地・マンション名は必ず記入してください。</p>
                             </div>
                         </div>
+                        <br>
+
+                        <!-- Form Name -->
+                        <legend id="hope">希望条件</legend>
                         <div class="form-group">
-                            <label for="tel" class="col-md-3 control-label">電話番号:</label>
+                            <label class="col-md-3 control-label">希望職種:</label>
                             <div class="col-md-4">
-                                <input type="tel" name="tel1" id="tel1" class="form-control" placeholder="080XXXXOOOO">
+                                <input class="form-control" name="desired_job" placeholder="" value="<?=$user_info["desired_job"]?>" type="text">
                             </div>
                         </div>
+                        <div class="form-group">
+                            <label class="col-md-3 control-label">希望年収:</label>
+                            <div class="col-md-4">
+                                <div class="input-group">
+                                  <input class="form-control" name="desired_income" placeholder="" value="<?=$user_info["desired_income"]?>" type="number">
+                                  <span class="input-group-addon">万円</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-md-3 control-label">希望勤務地:</label>
+                            <div class="col-md-4">
+                                <select name="desired_region" id="desired_region" class="form-control">
+                                    <option value="北海道" <?= $user_info['desired_region'] == '北海道' ? 'selected' : "" ?>>北海道</option>
+                                    <option value="青森県" <?= $user_info['desired_region'] == '青森県' ? 'selected' : "" ?>>青森県</option>
+                                    <option value="岩手県" <?= $user_info['desired_region'] == '岩手県' ? 'selected' : "" ?>>岩手県</option>
+                                    <option value="宮城県" <?= $user_info['desired_region'] == '宮城県' ? 'selected' : "" ?>>宮城県</option>
+                                    <option value="秋田県" <?= $user_info['desired_region'] == '秋田県' ? 'selected' : "" ?>>秋田県</option>
+                                    <option value="山形県" <?= $user_info['desired_region'] == '山形県' ? 'selected' : "" ?>>山形県</option>
+                                    <option value="福島県" <?= $user_info['desired_region'] == '福島県' ? 'selected' : "" ?>>福島県</option>
+                                    <option value="茨城県" <?= $user_info['desired_region'] == '茨城県' ? 'selected' : "" ?>>茨城県</option>
+                                    <option value="栃木県" <?= $user_info['desired_region'] == '栃木県' ? 'selected' : "" ?>>栃木県</option>
+                                    <option value="群馬県" <?= $user_info['desired_region'] == '群馬県' ? 'selected' : "" ?>>群馬県</option>
+                                    <option value="埼玉県" <?= $user_info['desired_region'] == '埼玉県' ? 'selected' : "" ?>>埼玉県</option>
+                                    <option value="千葉県" <?= $user_info['desired_region'] == '千葉県' ? 'selected' : "" ?>>千葉県</option>
+                                    <option value="東京都" <?= $user_info['desired_region'] == '東京都' ? 'selected' : "" ?>>東京都</option>
+                                    <option value="神奈川県" <?= $user_info['desired_region'] == '神奈川県' ? 'selected' : "" ?>>神奈川県</option>
+                                    <option value="新潟県" <?= $user_info['desired_region'] == '新潟県' ? 'selected' : "" ?>>新潟県</option>
+                                    <option value="山梨県" <?= $user_info['desired_region'] == '山梨県' ? 'selected' : "" ?>>山梨県</option>
+                                    <option value="長野県" <?= $user_info['desired_region'] == '長野県' ? 'selected' : "" ?>>長野県</option>
+                                    <option value="富山県" <?= $user_info['desired_region'] == '富山県' ? 'selected' : "" ?>>富山県</option>
+                                    <option value="石川県" <?= $user_info['desired_region'] == '石川県' ? 'selected' : "" ?>>石川県</option>
+                                    <option value="福井県" <?= $user_info['desired_region'] == '福井県' ? 'selected' : "" ?>>福井県</option>
+                                    <option value="岐阜県" <?= $user_info['desired_region'] == '岐阜県' ? 'selected' : "" ?>>岐阜県</option>
+                                    <option value="静岡県" <?= $user_info['desired_region'] == '静岡県' ? 'selected' : "" ?>>静岡県</option>
+                                    <option value="愛知県" <?= $user_info['desired_region'] == '愛知県' ? 'selected' : "" ?>>愛知県</option>
+                                    <option value="三重県" <?= $user_info['desired_region'] == '三重県' ? 'selected' : "" ?>>三重県</option>
+                                    <option value="滋賀県" <?= $user_info['desired_region'] == '滋賀県' ? 'selected' : "" ?>>滋賀県</option>
+                                    <option value="京都府" <?= $user_info['desired_region'] == '京都府' ? 'selected' : "" ?>>京都府</option>
+                                    <option value="大阪府" <?= $user_info['desired_region'] == '大阪府' ? 'selected' : "" ?>>大阪府</option>
+                                    <option value="兵庫県" <?= $user_info['desired_region'] == '兵庫県' ? 'selected' : "" ?>>兵庫県</option>
+                                    <option value="奈良県" <?= $user_info['desired_region'] == '奈良県' ? 'selected' : "" ?>>奈良県</option>
+                                    <option value="和歌山県" <?= $user_info['desired_region'] == '和歌山県' ? 'selected' : "" ?>>和歌山県</option>
+                                    <option value="鳥取県" <?= $user_info['desired_region'] == '鳥取県' ? 'selected' : "" ?>>鳥取県</option>
+                                    <option value="島根県" <?= $user_info['desired_region'] == '島根県' ? 'selected' : "" ?>>島根県</option>
+                                    <option value="岡山県" <?= $user_info['desired_region'] == '岡山県' ? 'selected' : "" ?>>岡山県</option>
+                                    <option value="広島県" <?= $user_info['desired_region'] == '広島県' ? 'selected' : "" ?>>広島県</option>
+                                    <option value="山口県" <?= $user_info['desired_region'] == '山口県' ? 'selected' : "" ?>>山口県</option>
+                                    <option value="徳島県" <?= $user_info['desired_region'] == '徳島県' ? 'selected' : "" ?>>徳島県</option>
+                                    <option value="香川県" <?= $user_info['desired_region'] == '香川県' ? 'selected' : "" ?>>香川県</option>
+                                    <option value="愛媛県" <?= $user_info['desired_region'] == '愛媛県' ? 'selected' : "" ?>>愛媛県</option>
+                                    <option value="高知県" <?= $user_info['desired_region'] == '高知県' ? 'selected' : "" ?>>高知県</option>
+                                    <option value="福岡県" <?= $user_info['desired_region'] == '福岡県' ? 'selected' : "" ?>>福岡県</option>
+                                    <option value="佐賀県" <?= $user_info['desired_region'] == '佐賀県' ? 'selected' : "" ?>>佐賀県</option>
+                                    <option value="長崎県" <?= $user_info['desired_region'] == '長崎県' ? 'selected' : "" ?>>長崎県</option>
+                                    <option value="熊本県" <?= $user_info['desired_region'] == '熊本県' ? 'selected' : "" ?>>熊本県</option>
+                                    <option value="大分県" <?= $user_info['desired_region'] == '大分県' ? 'selected' : "" ?>>大分県</option>
+                                    <option value="宮崎県" <?= $user_info['desired_region'] == '宮崎県' ? 'selected' : "" ?>>宮崎県</option>
+                                    <option value="鹿児島県" <?= $user_info['desired_region'] == '鹿児島県' ? 'selected' : "" ?>>鹿児島県</option>
+                                    <option value="沖縄県" <?= $user_info['desired_region'] == '沖縄県' ? 'selected' : "" ?>>沖縄県</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="comment" class="col-md-3 control-label">希望内容:</label>
+                            <div class="col-md-8">
+                                <textarea class="form-control" rows="20" name="desired_contents" id="desired_contents" placeholder="ご自由にお書きください。"><?=$user_info["desired_contents"]?></textarea>
+                            </div>
+                        </div>
+                        <br>
 
+                        <!-- Form Name -->
+                        <legend id="work">職務経歴</legend>
+                        <div class="form-group">
+                            <label class="col-md-3 control-label">直近の勤務先:</label>
+                            <div class="col-md-8">
+                                <input class="form-control" name="company" placeholder="" value="<?=$user_info["company"]?>" type="text">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-md-3 control-label">直近勤務先の勤務年数:</label>
+                            <div class="col-md-4">
+                                <div class="input-group">
+                                  <input class="form-control" name="year" placeholder="0" value="<?=$user_info["year"]?>" type="number">
+                                  <span class="input-group-addon">年</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-md-3 control-label">現収入:</label>
+                            <div class="col-md-4">
+                                <div class="input-group">
+                                    <input class="form-control" name="annual_income" placeholder="0" value="<?=$user_info["annual_income"]?>" type="number">
+                                    <span class="input-group-addon">万円</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-md-3 control-label">直近の担当職務:</label>
+                            <div class="col-md-8">
+                                <input class="form-control" name="job_title" placeholder="" value="<?=$user_info["job_title"]?>" type="text">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-md-3 control-label">転職回数:</label>
+                            <div class="col-md-4">
+                                <div class="input-group">
+                                    <input class="form-control" name="experience_num" placeholder="0" value="<?=$user_info["experience_num"]?>" type="number">
+                                    <span class="input-group-addon">回</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="comment" class="col-md-3 control-label">職務経歴詳細:</label>
+                            <div class="col-md-8">
+                                <textarea class="form-control" rows="20" name="career" id="career" placeholder="ご自由にお書きください。"><?=$user_info["career"]?></textarea>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-md-3 control-label">最終学歴:</label>
+                            <div class="col-md-8">
+                                <input class="form-control" name="school" placeholder="" value="<?=$user_info["school"]?>" type="text">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-md-3 control-label">学部・学科・専攻:</label>
+                            <div class="col-md-8">
+                                <input class="form-control" name="department" placeholder="" value="<?=$user_info["department"]?>" type="text">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-md-3 control-label">卒業年:</label>
+                            <div class="col-md-4">
+                              <div class="input-group">
+                                <input class="form-control" name="graduation_date" value="<?=$user_info["graduation_date"]?>" type="text">
+                                <span class="input-group-addon">年</span>
+                              </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-md-3 control-label" for="graduated">卒業有無:</label>
+                            <div class="col-sm-4">
+                                <input class="form-control checkbox no-border" type="checkbox" name="graduated" <?= $user_info['graduated'] == 'on' ? 'checked' : "" ?>>
+                            </div>
+                        </div>
 
                         <div class="form-group">
                             <label class="col-md-3 control-label"></label>
                             <div class="col-md-8">
-                                <input class="btn btn-primary" value="更新" type="button">
+                                <button id="profile_submit" class="btn btn-primary" value="更新" type="submit">更新</button>
                                 <span></span>
-                                <input class="btn btn-default" value="キャンセル" type="reset">
+                                <button class="btn btn-default" value="キャンセル" type="reset">キャンセル</button>
                             </div>
                         </div>
                     </form>
@@ -279,6 +447,8 @@ sessChk();
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
     <script src="https://getbootstrap.com/assets/js/docs.min.js"></script>
+    <script src="https://ajaxzip3.github.io/ajaxzip3.js" charset="UTF-8"></script>
 
+    </script>
   </body>
 </html>

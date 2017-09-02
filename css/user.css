@@ -67,6 +67,18 @@ body {
     padding: 0;
 }
 
+.no-border {
+    border: 0;
+    box-shadow: none;
+}
+
+.no-border:hover, .no-border:focus, .no-border:active {
+    background-color: transparent;
+    border-color: dimgray;
+    box-shadow: none;
+    outline: none;
+}
+
 .fading-side-menu.affix-top {
     opacity: 1;
     transition: opacity 1s

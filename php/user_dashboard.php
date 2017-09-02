@@ -42,9 +42,9 @@ sessChk();
         </div>
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav navbar-right">
-            <li id="dashboard"><a href="#"><span class="glyphicon glyphicon-home" aria-hidden="true"></span>マイページ</a></li>
-            <li id="notification"><a href="#"><span class="glyphicon glyphicon-bell" aria-hidden="true"></span>お知らせ</a></li>
-            <li id="signout"><a href="#"><span class="glyphicon glyphicon-log-out" aria-hidden="true"></span>ログアウト</a></li>
+            <li id="dashboard" data-toggle="popover" data-content="ダッシュボード"><a href="user_dashboard.php"><span class="glyphicon glyphicon-home" aria-hidden="true"></span></a></li>
+            <li id="notification" data-toggle="popover" data-content="お知らせ"><a href="#"><span class="glyphicon glyphicon-bell" aria-hidden="true"></span></a></li>
+            <li id="signout" data-toggle="popover" data-content="ログアウト"><a href="signout.php"><span class="glyphicon glyphicon-log-out" aria-hidden="true"></span></a></li>
           </ul>
         </div><!--/.nav-collapse -->
       </div>

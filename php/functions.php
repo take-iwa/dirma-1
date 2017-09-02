@@ -17,8 +17,12 @@ function connectDb() {
 }
 
 //XSS対策
-function escape($s) {
-	return htmlspecialchars($s, ENT_QUOTES, "UTF-8");
+function escape($data) {
+	if (is_array($data)) {//データが配列の場合
+    return array_map("escape",$data);
+  } else {//データが配列ではない場合
+    return htmlspecialchars($data, ENT_QUOTES, 'UTF-8');
+  }
 }
 
 //ユーザーか否か
@@ -44,6 +48,17 @@ function getUserId($email, $password, $db) {
 	} else {
 		return false;
 	}
+}
+
+//ID指定でユーザーテーブルから全部取得()
+function getUserAll() {
+	$db = connectDb();
+	$sql = "SELECT * FROM user_table WHERE id = :id";
+	$statement = $db->prepare($sql);
+	$statement->bindValue(':id', $_SESSION['user_id'], PDO::PARAM_INT);
+	$statement->execute();
+	$row = $statement->fetch();
+	return $row;
 }
 
 ?>

@@ -14,6 +14,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 		$error = 'パスワードとメールアドレスが正しくありません';
 	} else if (empty($error)) {
 		session_regenerate_id(true);
+		$_SESSION['user_id'] = $user_id;
 		$_SESSION['sess_id'] = session_id();
 		$dashboard_url = "user_dashboard.php";
 		header("Location: {$dashboard_url}");

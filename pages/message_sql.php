@@ -59,19 +59,28 @@ function setMessage() {
         $statement->bindValue(':transmission', $_POST['transmission'], PDO::PARAM_STR);
 
         if($statement->execute()) {
-          if($_POST['transmission'] == 0){
-            $url = "company_page.php?page=company_message&box=inbox";
-          }else{
-            $url = "user_page.php?page=user_message&box=inbox";
-          }
-          header("Location: {$url}");
+          echo '<div class="personal-info">
+                <div class="alert alert-info alert-dismissable">
+                <a class="panel-close close" data-dismiss="alert">×</a>
+                <i class="fa fa-coffee"></i>
+                メッセージを送信しました。
+                </div></div>';
           exit;
         } else {
-          echo "登録に失敗しました。";
+          echo '<div class="personal-info">
+                <div class="alert alert-danger alert-dismissable">
+                <a class="panel-close close" data-dismiss="alert">×</a>
+                <i class="fa fa-coffee"></i>
+                メッセージを送信できませんでした。
+                </div></div>';
         }
-
       } else {
-        echo "値が入力されていません";
+        echo '<div class="personal-info">
+              <div class="alert alert-danger alert-dismissable">
+                <a class="panel-close close" data-dismiss="alert">×</a>
+                <i class="fa fa-coffee"></i>
+                メッセージが入力されていません。
+                </div></div>';
       }
     }
   }

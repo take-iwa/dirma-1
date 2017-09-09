@@ -114,7 +114,7 @@ if( isset($_GET['box']) && $_GET['box'] !== ''){
                   </p>
                   <hr>
                   <p><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span> メッセージ返信</p>
-                  <form accept-charset="UTF-8" action="./send_message.php" method="POST">
+                  <form accept-charset="UTF-8" action="<?php setMessage();?>" method="POST">
                     <input type="text" name="user_id" value="<?=$msg['user_id']?>" hidden>
                     <input type="text" name="company_id" value="<?=$msg['company_id']?>" hidden>
                     <input type="text" name="reply_id" value="<?=$msg['id']?>" hidden>

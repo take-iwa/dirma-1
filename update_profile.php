@@ -1,6 +1,6 @@
 <?php
 require_once 'init.php';
-sessChk();
+
 
 //プロフィール更新
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -13,6 +13,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   //echo "<pre>";
   //print_r($_POST);
   //echo "</pre>";
+
+  //パスワード確認
+  if($_POST["password"] !== $_POST["repassword"]){
+    $profile_url = "./user_page.php?page=user_profile?r=2";
+    header("Location: {$profile_url}");
+    exit;
+  }
 
 	//以下、個別の処理
 	//パスワード　password
@@ -377,13 +384,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     //echo '希望内容<br>';
   }
 
-  $profile_url = "user_profile.php?r=1";
+  $profile_url = "./user_page.php?page=user_profile?r=1";
   header("Location: {$profile_url}");
   exit;
 }
 
 function rbegistrationFailure($str){
-  $profile_url = "user_profile.php?r=0";
+  $profile_url = "./user_page.php?page=user_profile?r=0";
   header("Location: {$profile_url}");
   exit;
 }

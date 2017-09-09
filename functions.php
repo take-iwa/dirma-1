@@ -47,6 +47,8 @@ function isSigninCompany()
 	}
 }
 
+/************ user_table ************/
+
 //ユーザーID取得
 function getUserId($email, $password, $db) {
 	$sql = "SELECT id, lpw FROM user_table WHERE email = :email";
@@ -61,16 +63,18 @@ function getUserId($email, $password, $db) {
 	}
 }
 
-//ID指定でユーザーテーブルから全部取得()
-function getUserAll() {
+//ユーザーID指定でユーザーテーブルから全部取得()
+function getUserAll($uid) {
 	$db = connectDb();
 	$sql = "SELECT * FROM user_table WHERE id = :id";
 	$statement = $db->prepare($sql);
-	$statement->bindValue(':id', $_SESSION['user_id'], PDO::PARAM_INT);
+  $statement->bindValue(':id', $uid, PDO::PARAM_INT);
 	$statement->execute();
 	$row = $statement->fetch();
 	return $row;
 }
+
+/************ company_table ************/
 
 //会社ID取得
 function getCompanyId($email, $password, $db) {
@@ -86,12 +90,12 @@ function getCompanyId($email, $password, $db) {
 	}
 }
 
-//ID指定でユーザーテーブルから全部取得()
-function getCompanyAll() {
+//ログイン中の会社ID指定で会社テーブルから全部取得()
+function getCompanyAll($cid) {
 	$db = connectDb();
 	$sql = "SELECT * FROM company_table WHERE id = :id";
 	$statement = $db->prepare($sql);
-	$statement->bindValue(':id', $_SESSION['company_id'], PDO::PARAM_INT);
+  $statement->bindValue(':id', $cid, PDO::PARAM_INT);
 	$statement->execute();
 	$row = $statement->fetch();
 	return $row;

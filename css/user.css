@@ -4,10 +4,6 @@ body {
     background-color: #f7f7f7;
 }
 
-.main-area {
-    margin-top:3em;
-}
-
 .lib-panel {
     margin-bottom: 20Px;
 }
@@ -65,6 +61,18 @@ body {
 
 .no-padding {
     padding: 0;
+}
+
+.no-border {
+    border: 0;
+    box-shadow: none;
+}
+
+.no-border:hover, .no-border:focus, .no-border:active {
+    background-color: transparent;
+    border-color: dimgray;
+    box-shadow: none;
+    outline: none;
 }
 
 .fading-side-menu.affix-top {

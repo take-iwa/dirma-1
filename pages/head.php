@@ -16,7 +16,8 @@
 
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet" id="themesid">
     <link href="./css/user.css" rel="stylesheet">
-    <!--link href="./css/company.css" rel="stylesheet"-->
+    <link href="./css/company.css" rel="stylesheet">
+    <link href="./css/style.css" rel="stylesheet">
     <link href="./css/message.css" rel="stylesheet">
     <link rel='stylesheet prefetch' href='http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css'>
     <!--[if lt IE 9]>
@@ -44,7 +45,7 @@
         </div>
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav navbar-right">
-            <li id="dashboard" data-toggle="popover" data-content="ホーム"><a href="index.php"><span class="glyphicon glyphicon-home" aria-hidden="true"></span></a></li>
+            <li id="home" data-toggle="popover" data-content="ホーム"><a href="index.php"><span class="glyphicon glyphicon-home" aria-hidden="true"></span></a></li>
             <li id="notification" data-toggle="popover" data-content="お知らせ"><a href="#"><span class="glyphicon glyphicon-bell" aria-hidden="true"></span></a></li>
             <li id="signout" data-toggle="popover" data-content="ログアウト"><a href="signout.php"><span class="glyphicon glyphicon-log-out" aria-hidden="true"></span></a></li>
           </ul>

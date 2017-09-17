@@ -10,9 +10,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 		$error = 'パスワードとメールアドレスが正しくありません';
 	} else if (empty($error)) {
 		session_regenerate_id(true);
-		$_SESSION['user_id'] = $user_id;
+		$_SESSION['admin_id'] = $user_id;
 		$_SESSION['sess_id'] = session_id();
-		$dashboard_url = "user_dashboard.php";
+		$dashboard_url = "admin.php";
 		header("Location: {$dashboard_url}");
 		exit;
 	}
@@ -47,7 +47,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
           <div class="col-sm-5 col-md-push-2">
             <div class="form-area">
               <h3>管理者サインイン</h3>
-              <form action="signin.php" method="POST">
+              <form action="signin_admin.php" method="POST">
                 <div class="form-group">
                   <label for="inputEmail" style="padding:0;">メールアドレス</label>
                   <input type="email" class="form-control" id="inputEmail" name="email">
@@ -66,7 +66,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
           </div>
         </div>
       </div>
-    </div>
     </div>
   </body>
 

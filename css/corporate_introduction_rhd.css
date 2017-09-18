@@ -1,0 +1,150 @@
+#top {
+    display: flex;
+}
+
+#dlogo {
+    margin-left: 50px;
+    margin-top: 10px;
+}
+
+#corpname {
+    margin-left: 100px;
+    color: #000000;
+    margin-top: 30px;
+}
+
+#view {
+    margin-left: 70px;
+    color: #666666;
+}
+
+.title {
+    color: #666666;
+    border-bottom: 1px solid #666666;
+    margin-left: 70px;
+    margin-right: 70px;
+    padding-bottom: 10px;
+    margin-top: 40px;
+}
+
+#cont {
+    color: #666666;
+    margin-left: 70px;
+    margin-right: 70px;
+    margin-bottom: 70px;
+}
+
+#cont1 {
+    color: #666666;
+    margin-left: 70px;
+    margin-right: 70px;
+}
+
+#fact1 {
+    display: flex;
+    margin-left: 70px;
+    margin-right: 70px;
+    margin-top: 30px;
+}
+
+#title1 {
+    margin-left: 70px;
+    color: #666666;
+}
+
+#title3 {
+    color: #666666;
+}
+
+#fact2 {
+    display: flex;
+    margin-left: 70px;
+    margin-right: 70px;
+    margin-top: 30px;
+}
+
+#cont2 {
+    color: #666666;
+    margin-right: 70px;
+}
+
+#cont3 {
+    color: #666666;
+    margin-left: 70px;
+    margin-right: 70px;
+    padding-bottom: 30px;
+    border-bottom: 1px solid #666666;
+}
+
+#frshop2 {
+    margin-top: 80px;
+}
+
+h3 {
+    color: #666666;
+}
+
+.workh3 {
+    color: #666666;
+    margin-left: 70px;
+}
+
+.work {
+    margin-left: 70px;
+    color: #666666;
+}
+
+table.type04 {
+    border-collapse: separate;
+    border-spacing: 1px;
+    text-align: left;
+    line-height: 1.5;
+    border-top: 1px solid #ccc;
+    margin-left: 90px;
+    color: #666666;
+}
+
+table.type04 th {
+    width: 150px;
+    padding: 10px;
+    font-weight: bold;
+    vertical-align: top;
+    border-bottom: 1px solid #ccc;
+}
+
+table.type04 td {
+    width: 350px;
+    padding: 10px;
+    vertical-align: top;
+    border-bottom: 1px solid #ccc;
+}
+
+#link {
+    margin-left: 70px;
+    color: #666666;
+    padding-bottom: 100px;
+    margin-right: 70px;
+    border-bottom: 1px solid #666666;
+    display: flex;
+    justify-content: space-around;
+    margin-top: 30px;
+}
+
+#hrhp {
+    border: solid 5px #dddddd;
+    margin-bottom: 0px;
+}
+
+#hrhp:hover {
+    opacity: 0.5;
+    cursor: pointer;
+}
+
+.link1 {
+    margin-top: 0px;
+    text-align: center;
+}
+
+#hoge:hover {
+    text-decoration: underline;
+}

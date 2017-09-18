@@ -4,7 +4,7 @@ $workplace = $_POST["pref_id"];
 
 //1.  DB接続します
 try {
-  $pdo = new PDO('mysql:dbname=dirma;charset=utf8;host=localhost','root','');
+  $pdo = new PDO('mysql:dbname=dirma;charset=utf8;host=dirma.mysql.database.azure.com','dirmauser@dirma','x3pzb24m');
 //注意：ホストは、サクラに繋いだらそれになる。ルート、そのあとのスペースは指定
 } catch (PDOException $e) {
   exit('DbConnectError:'.$e->getMessage());
@@ -43,7 +43,7 @@ if($status==false){
     <head>
         <meta charset="utf-8">
         <title>求人検索結果</title>
-        <link rel="stylesheet" href="../css/selectresult.css">
+        <link rel="stylesheet" href="./css/selectresult.css">
         <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
         <style type="text/css">
             a {
@@ -65,7 +65,7 @@ if($status==false){
 
     <body id="body">
         <div id="top">
-            <a href="index.php"><img src="../img/dirmalogo.png" alt="logo" width="100px" height="60px" id="dlogo"></a>
+            <a href="index.php"><img src="./img/dirmalogo.png" alt="logo" width="100px" height="60px" id="dlogo"></a>
             <p id="menu">ログイン</p>
         </div>
 

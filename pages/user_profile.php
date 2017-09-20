@@ -1,6 +1,15 @@
 <?php
 $user_info = getUserAll($_SESSION['user_id']);
 
+$pdo = connectDb();
+//job_categoryテーブル から値を取得し、 id と name を $category_list配列 に格納
+$sql = "SELECT * FROM job_category";
+$stmt = $pdo->query($sql);
+$category_list = array();
+while($row = $stmt -> fetch(PDO::FETCH_ASSOC)){
+  $category_list[$row['id']] = $row['job'];
+}
+
 ?>
 
 <div class="container">
@@ -217,10 +226,25 @@ $user_info = getUserAll($_SESSION['user_id']);
                 <!-- Form Name -->
                 <legend id="hope">希望条件</legend>
                 <div class="form-group">
-                    <label class="col-md-3 control-label">希望職種:</label>
-                    <div class="col-md-4">
-                        <input class="form-control" name="desired_job" placeholder="" value="<?=$user_info["desired_job"]?>" type="text">
-                    </div>
+                  <label class="col-md-3 control-label">希望職種:</label>
+                  <div class="col-md-6">
+                    <select class="form-control desired_job" name="desired_job">
+                      <option><?=$user_info["desired_job"]?></option>
+                      <?php
+                        foreach($category_list as $key => $job_name){
+                          echo '<option value="'.$key.'">'.$job_name.'</option>';
+                        }
+                      ?>
+                    </select>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="col-md-3 control-label">希望職種詳細:</label>
+                  <div class="col-md-6">
+                    <select class="form-control desired_detail" name="desired_detail">
+                      <option class=""><?=$user_info["desired_detail"]?></option>
+                    </select>
+                  </div>
                 </div>
                 <div class="form-group">
                     <label class="col-md-3 control-label">希望年収:</label>
@@ -320,10 +344,25 @@ $user_info = getUserAll($_SESSION['user_id']);
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="col-md-3 control-label">直近の担当職務:</label>
-                    <div class="col-md-8">
-                        <input class="form-control" name="job_title" placeholder="" value="<?=$user_info["job_title"]?>" type="text">
+                    <label class="col-md-3 control-label">直近の職種:</label>
+                    <div class="col-md-6">
+                      <select class="form-control job_title" name="job_title">
+                        <option><?=$user_info["job_title"]?></option>
+                        <?php
+                          foreach($category_list as $key => $job_name){
+                            echo '<option value="'.$key.'">'.$job_name.'</option>';
+                          }
+                        ?>
+                      </select>
                     </div>
+                </div>
+                <div class="form-group">
+                  <label class="col-md-3 control-label">直近の職種詳細:</label>
+                  <div class="col-md-6">
+                    <select class="form-control job_detail" name="job_detail">
+                      <option class=""><?=$user_info["job_detail"]?></option>
+                    </select>
+                  </div>
                 </div>
                 <div class="form-group">
                     <label class="col-md-3 control-label">転職回数:</label>
@@ -381,4 +420,64 @@ $user_info = getUserAll($_SESSION['user_id']);
       </div>
     </div>
 </div> <!-- /container -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 <script type="text/javascript" src="https://ajaxzip3.github.io/ajaxzip3.js" charset="utf-8"></script>
+<script type="text/javascript">
+  $(function(){
+    //selectタグ（親） が変更された場合
+    $('[name=desired_job]').on('change', function(){
+      var job_val = $(this).val();
+      
+      //maker_val値 を select.php へ渡す
+      $.ajax({
+        url: "job_select.php",
+        type: "POST",
+        dataType: 'json',
+        data: {
+          job_id: job_val
+        }
+      })
+        .done(function(data){
+        //selectタグ（子） の option値 を一旦削除
+        $('.desired_detail option').remove();
+        //job_select.php から戻って来た data の値をそれそれ optionタグ として生成し、
+        // .desired_detail に optionタグ を追加する
+        $.each(data, function(id, job_detail){
+          $('.desired_detail').append($('<option>').text(job_detail).attr('value', job_detail));
+        });
+      })
+        .fail(function(){
+        console.log("失敗");
+      });
+
+    });
+    
+    //selectタグ（親） が変更された場合
+    $('[name=job_title]').on('change', function(){
+      var job_val = $(this).val();
+
+      //maker_val値 を select.php へ渡す
+      $.ajax({
+        url: "job_select.php",
+        type: "POST",
+        dataType: 'json',
+        data: {
+          job_id: job_val
+        }
+      })
+        .done(function(data){
+        //selectタグ（子） の option値 を一旦削除
+        $('.job_detail option').remove();
+        //job_select.php から戻って来た data の値をそれそれ optionタグ として生成し、
+        // .desired_detail に optionタグ を追加する
+        $.each(data, function(id, job_detail){
+          $('.job_detail').append($('<option>').text(job_detail).attr('value', job_detail));
+        });
+      })
+        .fail(function(){
+        console.log("失敗");
+      });
+
+    });
+  });
+</script>

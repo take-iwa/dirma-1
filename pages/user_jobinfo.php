@@ -1,6 +1,8 @@
 <?php
 $user_info = getUserAll($_SESSION['user_id']);
 
+
+
 ?>
 
 <div class="container">

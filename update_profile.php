@@ -1,6 +1,6 @@
 <?php
 require_once 'init.php';
-
+include 'ChromePhp.php';
 
 //プロフィール更新
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -13,6 +13,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   //echo "<pre>";
   //print_r($_POST);
   //echo "</pre>";
+  //exit;
 
   //パスワード確認
   if($_POST["password"] !== $_POST["repassword"]){
@@ -234,8 +235,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
   //担当職種	job_title
   if(isset($_POST["job_title"])){
-    $job_title = trim($_POST["job_title"]);//文頭と文末にある半角スペースを除去。
-      $sql = 'UPDATE user_table SET job_title=:job_title WHERE id='.$_SESSION['user_id'];
+    $job_title = getJobCategory($_POST["job_title"]);
+    $sql = 'UPDATE user_table SET job_title=:job_title WHERE id='.$_SESSION['user_id'];
     $statement = $db->prepare($sql);
     $statement->bindValue(':job_title', $job_title, PDO::PARAM_STR);
 
@@ -243,6 +244,19 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
       rbegistrationFailure('担当職種');
     }
     //echo '担当職種<br>';
+  }
+  
+  //担当職種詳細	job_detail
+  if(isset($_POST["job_detail"])){
+    $job_detail = $_POST["job_detail"];
+    $sql = 'UPDATE user_table SET job_detail=:job_detail WHERE id='.$_SESSION['user_id'];
+    $statement = $db->prepare($sql);
+    $statement->bindValue(':job_detail', $job_detail, PDO::PARAM_STR);
+
+    if(!$statement->execute()){
+      rbegistrationFailure('担当職種詳細');
+    }
+    //echo '担当職種詳細<br>';
   }
 
   //経験社数	experience_num
@@ -334,7 +348,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
   //希望職種	desired_job
   if(isset($_POST["desired_job"])){
-    $desired_job = trim($_POST["desired_job"]);//文頭と文末にある半角スペースを除去。
+    $desired_job = getJobCategory($_POST["desired_job"]);
     $sql = 'UPDATE user_table SET desired_job=:desired_job WHERE id='.$_SESSION['user_id'];
     $statement = $db->prepare($sql);
     $statement->bindValue(':desired_job', $desired_job, PDO::PARAM_STR);
@@ -343,6 +357,19 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
       rbegistrationFailure('希望職種');
     }
     //echo '希望職種<br>';
+  }
+  
+  //希望職種詳細	desired_detail
+  if(isset($_POST["desired_detail"])){
+    $desired_detail = $_POST["desired_detail"];
+    $sql = 'UPDATE user_table SET desired_detail=:desired_detail WHERE id='.$_SESSION['user_id'];
+    $statement = $db->prepare($sql);
+    $statement->bindValue(':desired_detail', $desired_detail, PDO::PARAM_STR);
+
+    if(!$statement->execute()){
+      rbegistrationFailure('希望職種詳細');
+    }
+    //echo '希望職種詳細<br>';
   }
 
   //希望年収	desired_income
@@ -384,14 +411,25 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     //echo '希望内容<br>';
   }
 
-  $profile_url = "./user_page.php?page=user_profile?r=1";
+  $profile_url = "./user_page.php?page=user_profile&r=1";
   header("Location: {$profile_url}");
   exit;
 }
 
 function rbegistrationFailure($str){
-  $profile_url = "./user_page.php?page=user_profile?r=0";
+  $profile_url = "./user_page.php?page=user_profile&r=0";
   header("Location: {$profile_url}");
   exit;
 }
+
+function getJobCategory($key){
+  $db = connectDb();
+  $sql = "SELECT job FROM job_category WHERE id = :id";
+  $statement = $db->prepare($sql);
+  $statement->bindValue(':id', $key, PDO::PARAM_INT);
+  $statement->execute();
+  $row = $statement->fetch();
+  return $row['job'];
+}
+
 ?>

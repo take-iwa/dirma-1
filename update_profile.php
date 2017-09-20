@@ -17,7 +17,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
   //パスワード確認
   if($_POST["password"] !== $_POST["repassword"]){
-    $profile_url = "./user_page.php?page=user_profile?r=2";
+    $profile_url = "./user_page.php?page=user_profile&r=2";
     header("Location: {$profile_url}");
     exit;
   }

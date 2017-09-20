@@ -101,4 +101,38 @@ function getCompanyAll($cid) {
 	return $row;
 }
 
+
+/************ job_indev_table **************/
+//jobIdから全て取得
+function getJobInfoAll($jid) {
+  $db = connectDb();
+  $sql = "SELECT * FROM job_index_table WHERE id = :id";
+  $statement = $db->prepare($sql);
+  $statement->bindValue(':id', $jid, PDO::PARAM_INT);
+  $statement->execute();
+  $row = $statement->fetch();
+  return $row;
+}
+
+//新着の情報取得
+function getNewJobInfo($num) {
+  $db = connectDb();
+  $sql = "SELECT * FROM job_index_table order by date desc limit :num";
+  $statement = $db->prepare($sql);
+  $statement->bindValue(':num', $num, PDO::PARAM_INT);
+  $statement->execute();
+  $row = $statement->fetchAll();
+  return $row;
+}
+
+//希望職種情報取得
+function getFitJobInfo($desired) {
+  $db = connectDb();
+  $sql = "SELECT * FROM job_index_table WHERE job_sort = :desired";
+  $statement = $db->prepare($sql);
+  $statement->bindValue(':desired', $desired, PDO::PARAM_STR);
+  $statement->execute();
+  $row = $statement->fetchAll();
+  return $row;
+}
 ?>

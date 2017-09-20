@@ -57,7 +57,7 @@ if($status==false){
 
     <body>
         <div id="top">
-            <a href="index.php"><img src="../img/dirmalogo.png" alt="logo" width="100px" height="60px" id="dlogo"></a>
+            <a href="index.php"><img src="./img/dirmalogo.png" alt="logo" width="100px" height="60px" id="dlogo"></a>
             <h2 id="corpname">株式会社ファーストリテイリング　企業概要・募集職種一覧</h2>
 
         </div>

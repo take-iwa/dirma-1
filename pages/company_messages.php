@@ -1,5 +1,5 @@
 <?php
-
+//include 'ChromePhp.php';
 //会社情報、メッセージ数取得
 $company_info = getCompanyAll($_SESSION['company_id']);
 $count_message = getCountMessageToCompany($_SESSION['company_id']);
@@ -10,7 +10,9 @@ if( isset($_GET['box']) && $_GET['box'] !== ''){
 }else{
   $box = 'inbox';
 }
-
+//ChromePhp::log($company_info);
+//ChromePhp::log($count_message);
+//ChromePhp::log($countUnread);
 ?>
 
 
@@ -25,7 +27,7 @@ if( isset($_GET['box']) && $_GET['box'] !== ''){
       <ul class="inbox-nav inbox-divider">
         <li id="inbox" class="<?=$box == 'inbox' ? 'active' : ''?>">
           <a href="company_page.php?page=company_messages&box=inbox"><i class="fa fa-inbox"></i> Inbox 
-          <span class="label label-danger pull-right"><?= $countUnread !== 0 ? $countUnread : "" ?></span>
+          <!-- <span class="label label-danger pull-right"><?= $countUnread !== 0 ? $countUnread : "" ?></span> -->
         </a>
         </li>
         <li id="sent" class="<?=$box == 'sent' ? 'active' : ''?>">

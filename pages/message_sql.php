@@ -92,21 +92,21 @@ function setMessage() {
 //ユーザーID指定で受信メッセージ数を取得()
 function getCountMessageToUser($uid) {
   $db = connectDb();
-  $sql = "SELECT COUNT(id) FROM message_table WHERE user_id = :uid AND transmission = 0";
+  $sql = "SELECT * FROM message_table WHERE user_id = :uid AND transmission = 0";
   $statement = $db->prepare($sql);
   $statement->bindValue(':uid', $uid, PDO::PARAM_INT);
   $num = $statement->execute();
-  return $num;
+  return count($num);
 }
 
 //ユーザーID指定で「未読」の受信メッセージ数を取得()
 function getCountUnreadToUser($uid) {
   $db = connectDb();
-  $sql = "SELECT COUNT(id) FROM message_table WHERE user_id = :uid AND transmission = 0 AND already = 0";
+  $sql = "SELECT * FROM message_table WHERE user_id = :uid AND transmission = 0 AND already = 0";
   $statement = $db->prepare($sql);
   $statement->bindValue(':uid', $uid, PDO::PARAM_INT);
   $num = $statement->execute();
-  return $num;
+  return count($num);
 }
 
 //ユーザーID指定でInboxのメッセージ表示セット
@@ -183,31 +183,31 @@ function setViewSentOfUser($uid, $page) {
 //会社ID指定で受信メッセージ数を取得()
 function getCountMessageToCompany($cid) {
   $db = connectDb();
-  $sql = "SELECT COUNT(*) FROM message_table WHERE company_id = :cid AND transmission = 1";
+  $sql = "SELECT * FROM message_table WHERE company_id = :cid AND transmission = 1";
   $statement = $db->prepare($sql);
   $statement->bindValue(':cid', $cid, PDO::PARAM_INT);
   $num = $statement->execute();
-  return $num;
+  return count($num);
 }
 
 //会社ID指定で「未読」の受信メッセージ数を取得()
 function getCountUnreadToCompany($cid) {
   $db = connectDb();
-  $sql = "SELECT COUNT(*) FROM message_table WHERE company_id = :cid AND transmission = 1 AND already = 0";
+  $sql = "SELECT * FROM message_table WHERE company_id = :cid AND transmission = 1 AND already = 0";
   $statement = $db->prepare($sql);
   $statement->bindValue(':cid', $cid, PDO::PARAM_INT);
   $num = $statement->execute();
-  return $num;
+  return count($num);
 }
 
 //会社ID指定で送信メッセージ数を取得()
 function getCountMessageFromCompany($cid) {
   $db = connectDb();
-  $sql = "SELECT COUNT(*) FROM message_table WHERE company_id = :cid AND transmission = 0";
+  $sql = "SELECT * FROM message_table WHERE company_id = :cid AND transmission = 0";
   $statement = $db->prepare($sql);
   $statement->bindValue(':cid', $cid, PDO::PARAM_INT);
   $num = $statement->execute();
-  return $num;
+  return count($num);
 }
 
 //会社ID指定でInboxのメッセージ表示セット

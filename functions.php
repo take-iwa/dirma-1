@@ -74,6 +74,18 @@ function getUserAll($uid) {
 	return $row;
 }
 
+//新しく登録した順に指定件数分取得
+function getUserInfo($num) {
+  $db = connectDb();
+  $sql = "SELECT * FROM user_table order by date desc limit :num";
+  $statement = $db->prepare($sql);
+  $statement->bindValue(':num', $num, PDO::PARAM_INT);
+  $statement->execute();
+  $row = $statement->fetchAll();
+  return $row;
+}
+
+
 /************ company_table ************/
 
 //会社ID取得

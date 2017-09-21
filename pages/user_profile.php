@@ -16,7 +16,7 @@ while($row = $stmt -> fetch(PDO::FETCH_ASSOC)){
   <ul class="nav nav-tabs" role="tablist">
     <li role="presentation"><a href="user_page.php?page=user_mypage"><span class="glyphicon glyphicon-tasks" aria-hidden="true"></span> マイページ</a></li>
     <li role="presentation"><a href="user_page.php?page=user_messages"><span class="glyphicon glyphicon-envelope" aria-hidden="true"></span> メッセージ<span class="badge"></span></a></li>
-    <li role="presentation"><a href="user_page.php?page=user_jobinfo"><span class="glyphicon glyphicon-search" aria-hidden="true"></span> 求人検索</a></li>
+    <li role="presentation"><a href="search.php"><span class="glyphicon glyphicon-search" aria-hidden="true"></span> 求人検索</a></li>
     <li role="presentation" class="active"><a href="#"><span class="glyphicon glyphicon-user" aria-hidden="true"></span> プロフィール</a></li>
   </ul>
 

@@ -1,6 +1,6 @@
 <?php
 require_once 'init.php';
-include 'ChromePhp.php';
+//include 'ChromePhp.php';
 
 //プロフィール更新
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -10,10 +10,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 	//エスケープ処理
 	$_POST = escape($_POST);
 
-  //echo "<pre>";
-  //print_r($_POST);
-  //echo "</pre>";
-  //exit;
+  //ChromePhp::log($_POST);
 
   //パスワード確認
   if($_POST["password"] !== $_POST["repassword"]){
@@ -24,7 +21,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 	//以下、個別の処理
 	//パスワード　password
-	if(isset($_POST["password"])){
+  if(isset($_POST["password"]) && $_POST["password"] != ''){
 	  $password = trim($_POST["password"]);//文頭と文末にある半角スペースを除去。
     $hash = password_hash($password, PASSWORD_DEFAULT);
 		$sql = 'UPDATE user_table SET lpw=:password WHERE id='.$_SESSION['user_id'];
@@ -39,7 +36,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
   //パスワード以外
   //メールアドレス　email
-  if(isset($_POST["email"])){
+  if(isset($_POST["email"]) && $_POST["email"] != ''){
     $email = trim($_POST["email"]);//文頭と文末にある半角スペースを除去。
     $sql = 'UPDATE user_table SET email=:email WHERE id='.$_SESSION['user_id'];
     $statement = $db->prepare($sql);
@@ -52,7 +49,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   }
 
   //姓	family_name
-  if(isset($_POST["family_name"])){
+  if(isset($_POST["family_name"]) && $_POST["family_name"] != ''){
     $family_name = trim($_POST["family_name"]);//文頭と文末にある半角スペースを除去。
     $sql = 'UPDATE user_table SET family_name=:family_name WHERE id='.$_SESSION['user_id'];
     $statement = $db->prepare($sql);
@@ -65,7 +62,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   }
 
   //名	first_name
-  if(isset($_POST["first_name"])){
+  if(isset($_POST["first_name"]) && $_POST["first_name"] != ''){
     $first_name = trim($_POST["first_name"]);//文頭と文末にある半角スペースを除去。
     $sql = 'UPDATE user_table SET first_name=:first_name WHERE id='.$_SESSION['user_id'];
     $statement = $db->prepare($sql);
@@ -78,7 +75,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   }
 
   //セイ	family_kana
-  if(isset($_POST["family_kana"])){
+  if(isset($_POST["family_kana"]) && $_POST["family_kana"] != ''){
     $family_kana = trim($_POST["family_kana"]);//文頭と文末にある半角スペースを除去。
     $sql = 'UPDATE user_table SET family_kana=:family_kana WHERE id='.$_SESSION['user_id'];
     $statement = $db->prepare($sql);
@@ -91,7 +88,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   }
 
   //メイ	first_kana
-  if(isset($_POST["first_kana"])){
+  if(isset($_POST["first_kana"]) && $_POST["first_kana"] != ''){
     $first_kana = trim($_POST["first_kana"]);//文頭と文末にある半角スペースを除去。
     $sql = 'UPDATE user_table SET first_kana=:first_kana WHERE id='.$_SESSION['user_id'];
     $statement = $db->prepare($sql);
@@ -104,7 +101,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   }
 
   //生年月日	birthday
-  if(isset($_POST["birthday"])){
+  if(isset($_POST["birthday"]) && $_POST["birthday"] != ''){
     $birthday = trim($_POST["birthday"]);//文頭と文末にある半角スペースを除去。
     $sql = 'UPDATE user_table SET birthday=:birthday WHERE id='.$_SESSION['user_id'];
     $statement = $db->prepare($sql);
@@ -117,7 +114,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   }
 
   //性別	gender
-  if(isset($_POST["gender"])){
+  if(isset($_POST["gender"]) && $_POST["gender"] != ''){
     $gender = trim($_POST["gender"]);//文頭と文末にある半角スペースを除去。
     $sql = 'UPDATE user_table SET gender=:gender WHERE id='.$_SESSION['user_id'];
     $statement = $db->prepare($sql);
@@ -130,7 +127,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   }
 
   //電話番号	phone_num
-  if(isset($_POST["tel1"])){
+  if(isset($_POST["tel1"]) && $_POST["tel1"] != ''){
     $phone_num = trim($_POST["tel1"]);//文頭と文末にある半角スペースを除去。
     $sql = 'UPDATE user_table SET phone_num=:phone_num WHERE id='.$_SESSION['user_id'];
     $statement = $db->prepare($sql);
@@ -143,7 +140,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   }
 
   //郵便番号	postal_code
-  if(isset($_POST["zip11"])){
+  if(isset($_POST["zip11"]) && $_POST["zip11"] != ''){
     $postal_code = trim($_POST["zip11"]);//文頭と文末にある半角スペースを除去。
     $sql = 'UPDATE user_table SET postal_code=:postal_code WHERE id='.$_SESSION['user_id'];
     $statement = $db->prepare($sql);
@@ -156,7 +153,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   }
 
   //都道府県	prefectures
-  if(isset($_POST["prefectures"])){
+  if(isset($_POST["prefectures"]) && $_POST["prefectures"] != ''){
     $prefectures = trim($_POST["prefectures"]);//文頭と文末にある半角スペースを除去。
     $sql = 'UPDATE user_table SET prefectures=:prefectures WHERE id='.$_SESSION['user_id'];
     $statement = $db->prepare($sql);
@@ -169,7 +166,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   }
 
   //住所1	addr01
-  if(isset($_POST["addr01"])){
+  if(isset($_POST["addr01"]) && $_POST["addr01"] != ''){
     $address_before = trim($_POST["addr01"]);//文頭と文末にある半角スペースを除去。
     $sql = 'UPDATE user_table SET address_before=:address_before WHERE id='.$_SESSION['user_id'];
     $statement = $db->prepare($sql);
@@ -182,7 +179,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   }
 
   //住所2	addr02
-  if(isset($_POST["addr02"])){
+  if(isset($_POST["addr02"]) && $_POST["addr02"] != ''){
     $address_after = trim($_POST["addr02"]);//文頭と文末にある半角スペースを除去。
     $sql = 'UPDATE user_table SET address_after=:address_after WHERE id='.$_SESSION['user_id'];
     $statement = $db->prepare($sql);
@@ -195,7 +192,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   }
 
   //在籍企業	company
-  if(isset($_POST["company"])){
+  if(isset($_POST["company"]) && $_POST["company"] != ''){
     $company = trim($_POST["company"]);//文頭と文末にある半角スペースを除去。
     $sql = 'UPDATE user_table SET company=:company WHERE id='.$_SESSION['user_id'];
     $statement = $db->prepare($sql);
@@ -208,7 +205,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   }
 
   //経験年数	year
-  if(isset($_POST["year"])){
+  if(isset($_POST["year"]) && $_POST["year"] != ''){
     $year = trim($_POST["year"]);//文頭と文末にある半角スペースを除去。
     $sql = 'UPDATE user_table SET year=:year WHERE id='.$_SESSION['user_id'];
     $statement = $db->prepare($sql);
@@ -221,7 +218,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   }
 
   //現年収	annual_income
-  if(isset($_POST["annual_income"])){
+  if(isset($_POST["annual_income"]) && $_POST["annual_income"] != ''){
     $annual_income = trim($_POST["annual_income"]);//文頭と文末にある半角スペースを除去。
     $sql = 'UPDATE user_table SET annual_income=:annual_income WHERE id='.$_SESSION['user_id'];
     $statement = $db->prepare($sql);
@@ -234,7 +231,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   }
 
   //担当職種	job_title
-  if(isset($_POST["job_title"])){
+  if(isset($_POST["job_title"]) && $_POST["job_title"] != ''){
     $job_title = getJobCategory($_POST["job_title"]);
     $sql = 'UPDATE user_table SET job_title=:job_title WHERE id='.$_SESSION['user_id'];
     $statement = $db->prepare($sql);
@@ -247,7 +244,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   }
   
   //担当職種詳細	job_detail
-  if(isset($_POST["job_detail"])){
+  if(isset($_POST["job_detail"]) && $_POST["job_detail"] != ''){
     $job_detail = $_POST["job_detail"];
     $sql = 'UPDATE user_table SET job_detail=:job_detail WHERE id='.$_SESSION['user_id'];
     $statement = $db->prepare($sql);
@@ -260,7 +257,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   }
 
   //経験社数	experience_num
-  if(isset($_POST["experience_num"])){
+  if(isset($_POST["experience_num"]) && $_POST["experience_num"] != ''){
     $experience_num = trim($_POST["experience_num"]);//文頭と文末にある半角スペースを除去。
     $sql = 'UPDATE user_table SET experience_num=:experience_num WHERE id='.$_SESSION['user_id'];
     $statement = $db->prepare($sql);
@@ -273,7 +270,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   }
 
   //職務経歴	career
-  if(isset($_POST["career"])){
+  if(isset($_POST["career"]) && $_POST["career"] != ''){
     $career = trim($_POST["career"]);//文頭と文末にある半角スペースを除去。
     $sql = 'UPDATE user_table SET career=:career WHERE id='.$_SESSION['user_id'];
     $statement = $db->prepare($sql);
@@ -286,7 +283,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   }
 
   //学校名	school
-  if(isset($_POST["school"])){
+  if(isset($_POST["school"]) && $_POST["school"] != ''){
     $school = trim($_POST["school"]);//文頭と文末にある半角スペースを除去。
     $sql = 'UPDATE user_table SET school=:school WHERE id='.$_SESSION['user_id'];
     $statement = $db->prepare($sql);
@@ -299,7 +296,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   }
 
   //学部・学科・専攻	department
-  if(isset($_POST["department"])){
+  if(isset($_POST["department"]) && $_POST["department"] != ''){
     $department = trim($_POST["department"]);//文頭と文末にある半角スペースを除去。
     $sql = 'UPDATE user_table SET department=:department WHERE id='.$_SESSION['user_id'];
     $statement = $db->prepare($sql);
@@ -312,7 +309,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   }
 
   //卒業年	graduation_date
-  if(isset($_POST["graduation_date"])){
+  if(isset($_POST["graduation_date"]) && $_POST["email"] != ''){
     $graduation_date = trim($_POST["graduation_date"]);//文頭と文末にある半角スペースを除去。
     $sql = 'UPDATE user_table SET graduation_date=:graduation_date WHERE id='.$_SESSION['user_id'];
     $statement = $db->prepare($sql);
@@ -347,7 +344,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   }
 
   //希望職種	desired_job
-  if(isset($_POST["desired_job"])){
+  if(isset($_POST["desired_job"]) && $_POST["desired_job"] != ''){
     $desired_job = getJobCategory($_POST["desired_job"]);
     $sql = 'UPDATE user_table SET desired_job=:desired_job WHERE id='.$_SESSION['user_id'];
     $statement = $db->prepare($sql);
@@ -360,7 +357,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   }
   
   //希望職種詳細	desired_detail
-  if(isset($_POST["desired_detail"])){
+  if(isset($_POST["desired_detail"]) && $_POST["emadesired_detailil"] != ''){
     $desired_detail = $_POST["desired_detail"];
     $sql = 'UPDATE user_table SET desired_detail=:desired_detail WHERE id='.$_SESSION['user_id'];
     $statement = $db->prepare($sql);
@@ -373,7 +370,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   }
 
   //希望年収	desired_income
-  if(isset($_POST["desired_income"])){
+  if(isset($_POST["desired_income"]) && $_POST["desired_income"] != ''){
     $desired_income = trim($_POST["desired_income"]);//文頭と文末にある半角スペースを除去。
     $sql = 'UPDATE user_table SET desired_income=:desired_income WHERE id='.$_SESSION['user_id'];
     $statement = $db->prepare($sql);
@@ -386,7 +383,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   }
 
   //希望勤務地	desired_region
-  if(isset($_POST["desired_region"])){
+  if(isset($_POST["desired_region"]) && $_POST["desired_region"] != ''){
     $desired_region = trim($_POST["desired_region"]);//文頭と文末にある半角スペースを除去。
     $sql = 'UPDATE user_table SET desired_region=:desired_region WHERE id='.$_SESSION['user_id'];
     $statement = $db->prepare($sql);
@@ -399,7 +396,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   }
 
   //希望内容	desired_contents
-  if(isset($_POST["desired_contents"])){
+  if(isset($_POST["desired_contents"]) && $_POST["desired_contents"] != ''){
     $desired_contents = trim($_POST["desired_contents"]);//文頭と文末にある半角スペースを除去。
     $sql = 'UPDATE user_table SET desired_contents=:desired_contents WHERE id='.$_SESSION['user_id'];
     $statement = $db->prepare($sql);

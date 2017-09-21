@@ -35,20 +35,20 @@
          </div>
 
 <ul class="gnavi">
-  <li><a href="#service">SURVICE</a></li>
+  <li><a href="#service">SERVICE</a></li>
   <li><a href="#gallery">GALLERY</a></li>
   <li><a href="#">ABOUT US</a></li>
   <li><a href="#">CONTACT</a></li>
 </ul>
 
         </header>
-    
+
     <div class="logo_cencer">
         <img src="./img/dirma_white.png" width="300" height="200">
         </div>
     <p id="main">世界を変えていく企業との出会いを、あなたに。
     </p>
-     
+
     </nav>
     <div id="body">
     </div>
@@ -56,17 +56,17 @@
     <div>
         <a href="signin.php" class="button_left">ログイン / 会員登録</a>
     </div>
-      
+
     <div>
         <a href="search.php" class="button_right">求人検索</a>
     </div>
-    
+
     <div id="service">
-        SURVICE
+        SERVICE
     </div>
-    
-    
-    
+
+
+
     <div class="feature1">
       <div class="textall1">
        <p class="tittle1">FEATURE
@@ -86,9 +86,9 @@
         <div class="pic1">
         <img src="./img/future12.png" width="700" height="500">
         </div>
-        
+
     </div>
-    
+
         <div class="feature2">
         <div class="pic2">
         <img src="./img/future2.png" width="550" height="420">
@@ -132,19 +132,19 @@
     <p id="gallery">GALLERY</p>
         <ul class="corp1">
     <li class="img1">
-        <a href="http://www.recruit.jp/employment/"><img src="./img/1.png" width="420" height="280"><p>株式会社リクルートホールディングス</p>
+        <a href="http://www.recruit.jp/employment/" target="_blank"><img src="../img/1.png" width="420" height="280"><p>株式会社リクルートホールディングス</p>
         </a>
         <p class="#1">#働き方 #海外 #革新性</p>
     </li>
-    
+
     <li class="img2">
-        <a href="https://corp.rakuten.co.jp/careers/top/"><img src="./img/2.png" width="420" height="280"><p>楽天株式会社</p>
+        <a href="https://corp.rakuten.co.jp/careers/top/" target="_blank"><img src="../img/2.png" width="420" height="280"><p>楽天株式会社</p>
         </a>
         <p class="#1">#働き方 #海外 #革新性</p>
     </li>
-    
+
     <li class="img3">
-        <a href="https://www.fastretailing.com/employment/ja/"><img src="./img/3.png" width="420" height="280"><p>ファーストリテイリング</p>
+        <a href="https://www.fastretailing.com/employment/ja/" target="_blank"><img src="../img/3.png" width="420" height="280"><p>ファーストリテイリング</p>
         </a>
         <p class="#1">#働き方 #海外 #革新性</p>
     </li>
@@ -152,19 +152,19 @@
 
     <ul class="corp1">
     <li class="img4">
-        <a href="http://mitsui-career.com/"><img src="./img/4.png" width="420" height="280"><p>三井物産株式会社</p>
+        <a href="http://mitsui-career.com/" target="_blank"><img src="../img/4.png" width="420" height="280"><p>三井物産株式会社</p>
         </a>
         <p class="#1">#働き方 #海外 #革新性</p>
     </li>
-    
+
     <li class="img5">
-        <a href="http://www-07.ibm.com/employment/jp/cp01/"><img src="./img/5.png" width="420" height="280"><p>株式会社日本IBM</p>
+        <a href="http://www-07.ibm.com/employment/jp/cp01/" target="_blank"><img src="../img/5.png" width="420" height="280"><p>株式会社日本IBM</p>
         </a>
         <p class="#1">#働き方 #海外 #革新性</p>
     </li>
-    
+
     <li class="img6">
-        <a href="https://www.amazon.co.jp/b/ref=s9_acss_bw_h1_hrmid_md1_w?node=5121262051&pf_rd_m=A3P5ROKL5A1OLE&pf_rd_s=merchandised-search-1&pf_rd_r=SMC1W6ZEVE1G43SZ030N&pf_rd_t=101&pf_rd_p=6b72eb49-8139-43e1-ba7f-3a5db6dd7975&pf_rd_i=5121604051"><img src="./img/6.png" width="420" height="280"><p>株式会社アマゾン</p>
+        <a href="https://www.amazon.co.jp/b/ref=s9_acss_bw_h1_hrmid_md1_w?node=5121262051&pf_rd_m=A3P5ROKL5A1OLE&pf_rd_s=merchandised-search-1&pf_rd_r=SMC1W6ZEVE1G43SZ030N&pf_rd_t=101&pf_rd_p=6b72eb49-8139-43e1-ba7f-3a5db6dd7975&pf_rd_i=5121604051"><img src="../img/6.png" target="_blank" width="420" height="280"><p>株式会社アマゾン</p>
         </a>
         <p class="#1">#働き方 #海外 #革新性</p>
     </li>

@@ -1,46 +1,102 @@
-<!DOCTYPE html>
-<html lang="en">
+<?php
+require_once 'init.php';
+$workplace = $_POST["pref_id"];
+$jobtype_detail = $_POST["jobtype_detail"];
+$min_salary = $_POST["salary"];
+$hoge = json_decode($min_salary)[0];
+$fuga = json_decode($min_salary)[1];
+//$corporate = $_GET["corporate"];
 
-<head>
-    <meta charset="UTF-8">
-    <title>Document</title>
-    <link rel="stylesheet" href="./css/search.css">
-    <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
-    <style type="text/css">
-        a {
-            text-decoration: none;
-        }
-        
-        a:link {
-            color: #666666;
-        }
-        
-        a:visited {
-            color: #330066;
-        }
+//1.  DB接続します
+$pdo = connectDb();
 
-    </style>
+//２．データ登録SQL作成
+  $stmt = $pdo->prepare("SELECT * FROM job_index_table WHERE workplace LIKE :workplace AND comp_max > :hoge AND comp_min < :fuga AND job_sort_detail LIKE :jobtype_detail");
 
-</head>
+  //$stmt = $pdo->prepare("SELECT * FROM job_index_table WHERE workplace LIKE :workplace AND comp_max > :hoge AND comp_min < :fuga AND job_sort_detail LIKE :jobtype_detail// OR corporate LIKE :corporate");
 
-<body>
-    <header>
-        <img src="./img/dirma_logo.png" id="logo" alt="">
-    </header>
-
-    <div id="search">
-
-        <div id="job">
-            <p id="jobs">求人内容で検索</p>
-            <form action="searchresult.php" method="post">
-
-                <div class="jobsearch">
+//  $stmt = $pdo->prepare($sql);
+  // $stmt = $pdo->prepare("SELECT * FROM job_index_table WHERE job_sort LIKE :jobtype_detail");
+  // $stmt = $pdo->prepare("SELECT * FROM job_index_table WHERE workplace LIKE '$workplace'");
+  $stmt->bindValue(':workplace', $workplace, PDO::PARAM_STR);
+  $stmt->bindValue(':hoge', $hoge, PDO::PARAM_STR);
+  $stmt->bindValue(':fuga', $fuga, PDO::PARAM_STR);
+  //$stmt->bindValue(':corporate', $corporate, PDO::PARAM_STR);
+  $stmt->bindValue(':jobtype_detail', $jobtype_detail, PDO::PARAM_STR);
+$status = $stmt->execute();
 
 
-                    <p class="stitle" id="sort">職種&emsp;&emsp;</p>
+//３．データ表示
+$view="";
+if($status==false){
+  //execute（SQL実行時にエラーがある場合）
+  $error = $stmt->errorInfo();
+  exit("ErrorQuery:".$error[2]);
+
+}else{
+  //Selectデータの数だけ自動でループしてくれる
+  while( $result = $stmt->fetch(PDO::FETCH_ASSOC)){
+            $view .='<tr id="tr">';
+    $view .= '<td class="text-success" width="100px" align="center" vartical-align="middle" id="1"　 >'.$result["corporate"].'<br>'.$result["job_title"].'</td>';
+            $view .= '<td width="120px" valign="middle"><p class="jc">'.$result["job_contents"].'</p></td>';
+      $view .= '<td width="120px" valign="middle">'.$result["wanted"].'</td>';
+      $view .= '<td width="120px" valign="middle">'.$result["comp_min"].'〜'.$result["comp_max"].'万円</td>';
+            $view .= '<td width="120px" valign="middle">'.$result["workplace"].'</td>';
+            $view .= '<td id="linktd"><a href="jobdetail/jobdetail_fr_0001.php" id="linkdirmajob">Dirma取材<br>職種詳細</a><br>
+            <a href="https://www.fastretailing.com/employment/ja/fastretailing/jp/career/corporate/joblist/detail/?id=627" id="linkcorpjob">企業サイト<br>職種詳細</a></td>';
+
+      $view .='</tr>';
+
+  } }
+
+?>
+
+    <!DOCTYPE html>
+    <html lang="ja">
+
+    <head>
+        <meta charset="utf-8">
+        <title>求人検索結果</title>
+        <link rel="stylesheet" href="./css/searchresult.css">
+        <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
+        <style type="text/css">
+            a {
+                text-decoration: none;
+            }
+
+            a:link {
+                color: #0000FF;
+            }
+
+            a:visited {
+                color: #330066;
+            }
+
+        </style>
 
 
-                    <select class="parent jobtypes" name="foo" id="jt">
+    </head>
+
+    <body id="body">
+
+
+        <header>
+            <img src="./img/dirma_logo.png" id="logo" alt="">
+        </header>
+
+        <div id="search">
+
+            <div id="job">
+                <p id="jobs">求人内容で検索</p>
+                <form action="searchresult.php" method="post">
+
+                    <div class="jobsearch">
+
+
+                        <p class="stitle" id="sort">職種&emsp;&emsp;</p>
+
+
+                        <select class="parent jobtypes" name="foo" id="jt">
   <option value="" selected="selected">職種分類を選択</option>
   <option value="kanri">経営企画・事業企画・管理部門</option>
 <option value="marketing">商品企画・マーケティング</option>
@@ -53,10 +109,10 @@
 
                 </select></div>
 
-                <div class="jobsearch">
+                    <div class="jobsearch">
 
-                    <p class="stitle">職種詳細</p>
-                    <select class="children jobtypes" name="jobtype_detail" disabled id="jt">
+                        <p class="stitle">職種詳細</p>
+                        <select class="children jobtypes" name="jobtype_detail" disabled id="jt">
   <option value="" selected="selected">職種詳細</option>
 
      <option value="経営企画" data-val="kanri">経営企画</option>
@@ -94,7 +150,7 @@
 <option value="UI/UXデザイナー" data-val="web">UI/UXデザイナー</option>
 <option value="データ分析" data-val="web">データ分析</option>
 <option value="ゲーム関連" data-val="web">ゲーム関連</option>
-                   
+
      <option value="回路・システム設計" data-val="emc">回路・システム設計</option>
   <option value="半導体設計" data-val="emc">半導体設計</option>
     <option value="機械・機構設計" data-val="emc">機械・機構設計</option>
@@ -113,7 +169,7 @@
 
  <option value="アシスタント" data-val="asistant">アシスタント</option>
   <option value="秘書" data-val="asistant">秘書</option>
-                   
+
  <option value="金融専門職" data-val="other">金融専門職</option>
   <option value="メディカル専門職" data-val="other">メディカル専門職</option>
   <option value="流通専門職" data-val="other">流通専門職</option>
@@ -122,9 +178,9 @@
   <option value="その他" data-val="other">その他</option>
                     </select></div>
 
-                <div class="jobsearch">
-                    <p class="stitle">勤務地&emsp;</p>
-                    <select name="pref_id" id="place" class="jobtypes">
+                    <div class="jobsearch">
+                        <p class="stitle">勤務地&emsp;</p>
+                        <select name="pref_id" id="place" class="jobtypes">
     <option value="東京都">東京都</option>
     <option value="北海道">北海道</option>
     <option value="青森県">青森県</option>
@@ -174,69 +230,91 @@
     <option value="沖縄県">沖縄県</option>
                 </select></div>
 
-                <div class="jobsearch">
-                    <p class="stitle">年収&emsp;&emsp;</p>
-                    <select name="salary" id="salary" class="jobtypes">
-                        <option value="[600,800]">600〜800万円</option>
+                    <div class="jobsearch">
+                        <p class="stitle">年収&emsp;&emsp;</p>
+                        <select name="salary" id="salary" class="jobtypes">
+                            <option value="[600,800]">600〜800万円</option>
     <option value="[1,400]">〜400万円</option>
     <option value="[400,600]">400〜600万円</option>
-
     <option value="[800,1000]">800〜1000万円</option>
     <option value="[1000,1200]">1000〜1200万円</option>
     <option value="[1200,2000]">1200万円〜</option>
     <option value="none">非公開</option>
 
     </select>
-                </div>
-                <input type="submit" value="求人を検索" id="but">
+                    </div>
+                    <input type="submit" value="求人を検索" id="but">
 
-            </form>
+                </form>
+
+            </div>
+
+            <div id="company">
+
+                <p id="coms">企業名で検索</p>
+                <table id="table">
+                    <tr>
+                        <td class="td1"> <a href="searchresult_corporate.php?corporate=株式会社グーグル" id="ggl">Google</a></td>
+                        <td class="td2"> <a href="indexb.php">Apple Japan</a></td>
+                        <td class="td3"> <a href="indexc.php">Amazon Japan</a></td>
+                        <td class="td4"> <a href="indexa.php">日本マイクロソフト</a></td>
+
+                    </tr>
+                    <tr>
+                        <td class="td1"> <a href="index.php">ソフトバンク</a></td>
+                        <td class="td2"> <a href="index.php">ファーストリテイリング</a></td>
+                        <td class="td3"> <a href="index.php">楽天</a></td>
+                        <td class="td4"> <a href="index.php">リクルートホールディングス</a></td>
+                    </tr>
+                    <tr>
+                        <td class="td1"><a href="indexa.php">トヨタ自動車</a></td>
+                        <td class="td2"> <a href="indexa.php">ソニー</a></td>
+                        <td class="td3"> <a href="indexa.php">パナソニック</a></td>
+                        <td class="td4"> <a href="indexa.php">本田技研工業</a></td>
+                    </tr>
+                    <tr>
+                        <td class="td1"> <a href="indexa.php">三菱商事</a></td>
+                        <td class="td2"> <a href="indexa.php">三井物産</a></td>
+                        <td class="td3"> <a href="indexa.php">伊藤忠商事</a></td>
+                        <td class="td4"> <a href="indexa.php">住友商事</a></td>
+                    </tr>
+
+                </table>
+
+            </div>
 
         </div>
 
-        <div id="company">
 
-            <p id="coms">企業名で検索</p>
-            <table id="table">
-                <tr>
-                    <td class="td1"> <a href="searchresult_corporate.php?corporate=株式会社グーグル" id="ggl">Google</a></td>
-                    <td class="td2"> <a href="indexb.php">Apple Japan</a>
-                    </td>
-                    <td class="td3"> <a href="indexc.php">Amazon Japan</a></td>
-                    <td class="td4"> <a href="indexa.php">日本マイクロソフト</a></td>
+
+        <script src="./js/script.js"></script>
+
+
+
+
+
+        <!-- Main[Start] -->
+        <div id="divtable">
+            <p>○件の求人情報が該当しました。</p>
+            <table border="solid 1px #808000" id="table">
+                <tr id="th1">
+                    <th class="th1" width="300px">社名・募集ポジション</th>
+                    <th class="th1" width="300px">仕事内容</th>
+                    <th class="th1" width="300px">求める人物・経験</th>
+                    <th class="th1" width="100px">想定年収</th>
+                    <th class="th1" width="100px">勤務地</th>
+                    <th class="th1" width="200px">詳細情報</th>
 
                 </tr>
-                <tr>
-                    <td class="td1"> <a href="index.php">ソフトバンク</a></td>
-                    <td class="td2"> <a href="index.php">ファーストリテイリング</a></td>
-                    <td class="td3"> <a href="index.php">楽天</a></td>
-                    <td class="td4"> <a href="index.php">リクルートホールディングス</a></td>
-                </tr>
-                <tr>
-                    <td class="td1"><a href="indexa.php">トヨタ自動車</a></td>
-                    <td class="td2"> <a href="indexa.php">ソニー</a></td>
-                    <td class="td3"> <a href="indexa.php">パナソニック</a></td>
-                    <td class="td4"> <a href="indexa.php">本田技研工業</a></td>
-                </tr>
-                <tr>
-                    <td class="td1"> <a href="indexa.php">三菱商事</a></td>
-                    <td class="td2"> <a href="indexa.php">三井物産</a></td>
-                    <td class="td3"> <a href="indexa.php">伊藤忠商事</a></td>
-                    <td class="td4"> <a href="indexa.php">住友商事</a></td>
-                </tr>
+                <?=$view?>
 
             </table>
 
         </div>
 
-    </div>
 
+        <!-- Main[End] -->
 
+    </body>
 
-    <script src="./js/script.js"></script>
-
-
-
-</body>
-
-</html>
+    </html>

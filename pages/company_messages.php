@@ -110,6 +110,35 @@ if( isset($_GET['box']) && $_GET['box'] !== ''){
             </div>
           </div>
         </div>
+      <?php elseif( $box === 'nice') :?>
+      <?php 
+      $user = getUserAll($_GET['uid']);
+      ?>
+      <div class="inbox-head ">
+        <h4>Message</h4>
+      </div>
+      <div class="inbox-body">
+        <div class="row">
+          <div class="col-md-12 col-sm-4">
+            <div class="panel panel-default">
+              <div class="panel-body">
+                <h4><span class="glyphicon glyphicon-user" aria-hidden="true"></span> to
+                  <?=$user['family_name']?> さま</h4>
+                <hr>
+                <p><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span> メッセージをお書き下さい</p>
+                <form accept-charset="UTF-8" action="<?php setMessage();?>" method="POST">
+                  <input type="text" name="user_id" value="<?=$user['id']?>" hidden>
+                  <input type="text" name="company_id" value="<?=$company_info['id']?>" hidden>
+                  <input type="text" name="reply_id" value="0" hidden>
+                  <input type="text" name="transmission" value="0" hidden>
+                  <textarea class="form-control counted" name="message" placeholder="Type in your message" rows="8" style="margin-bottom:10px;"></textarea>
+                  <button class="btn btn-info" type="submit"><span class="glyphicon glyphicon-send" aria-hidden="true"></span> メッセージを送る</button>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </aside>
   </div>
   <?php endif ; ?>

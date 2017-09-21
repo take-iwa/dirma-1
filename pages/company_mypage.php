@@ -13,7 +13,6 @@ foreach($user_array as $key => $value){
                       <div class="caption">
                         <div class="col-lg-12">
                           <span class="glyphicon glyphicon glyphicon-user"></span>
-                          <span class="glyphicon glyphicon glyphicon-thumbs-up pull-right text-primary"></span>
                         </div>
                         <div class="col-lg-12 well well-add-card">';
     $user_view .= '<h4>'.$value['family_name'].' '.$value['first_name'].'( '.$value['family_kana'].' '.$value['first_kana'].' )</h4>
@@ -27,7 +26,7 @@ foreach($user_array as $key => $value){
                     <p class="text-muted">希望年収：'.$value['desired_income'].'万円</p>
                     <p class="text-muted">希望勤務地：'.$value['desired_region'].'</p>
                   </div>
-                  <button type="button" class="btn btn-primary btn-xs btn-update btn-add-card">メッセージを送る</button>
+                  <a href="company_page.php?page=company_messages&box=nice&uid='.$value['id'].'"><button type="button" class="btn btn-primary btn-xs btn-update btn-add-card">メッセージを送る</button></a>
                   </div></div></div>';
   }
 }

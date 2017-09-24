@@ -10,7 +10,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 		$db = connectDb();
 		$hash = password_hash($password, PASSWORD_DEFAULT);
 		$sql = 'INSERT INTO user_table (id, email, lpw, kanri_flg, date)
-      VALUES (NULL, :email, :password, 0, sysdate())';
+      VALUES (NULL, :email, :password, 0, time())';
 		$statement = $db->prepare($sql);
 		$statement->bindValue(':email', $email, PDO::PARAM_STR);
 		$statement->bindValue(':password', $hash, PDO::PARAM_STR);
@@ -40,6 +40,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 		<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
 		<link href="./css/style.css" rel="stylesheet">
 		<link href="./css/signin.css" rel="stylesheet">
+    <link rel="shortcut icon" href="./img/dirma_favicon.ico">
 	</head>
 
 	<body>

@@ -24,7 +24,10 @@ if($status==false){
   while( $result = $stmt->fetch(PDO::FETCH_ASSOC)){
             $view .='<a href="" id="hoge"><li id="joblist">'.$result["job_title"].'</li></a>';
 
-  } } ?>
+  }
+}
+
+?>
 
 
 
@@ -34,16 +37,16 @@ if($status==false){
     <html lang="en">
 
     <head>
-        <meta charset="UTF-8">
-        <title>Document</title>
-        <link rel="stylesheet" href="../css/jobdetail_fr_0001.css">
-        <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
-
+      <meta charset="UTF-8">
+      <title>DIRMA-株式会社ファーストリテイリング</title>
+      <link rel="stylesheet" href="../css/jobdetail_fr_0001.css">
+      <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
+      <link rel="shortcut icon" href="../img/dirma_favicon.ico">
     </head>
 
     <body>
         <div id="top">
-            <a href="index.php"><img src="../img/dirmalogo.png" alt="logo" width="100px" height="60px" id="dlogo"></a>
+            <a href="../index.php"><img src="../img/dirmalogo.png" alt="logo" width="100px" height="60px" id="dlogo"></a>
             <h2 id="corpname">株式会社ファーストリテイリング　ジーユー戦略人事（ビジネスパートナー）</h2>
 
         </div>
@@ -123,8 +126,9 @@ if($status==false){
 
         <div id="footer">
             <a href="https://progres12.jposting.net/pgfastretailing/u/entry.phtml?job_code1=627" class="bt-samp31">エントリー</a>
-            <a href="#" class="bt-samp31">気になる</a>
+            <a href="../send_message.php?cid=1&uid=1&jid=fr_0001" class="bt-samp31">気になる</a>
             <a href="../corporate_introduction_fr.php" class="bt-samp32" id="corpintro">企業紹介ページを見る</a>
         </div>
 
     </body>
+</html>

@@ -52,7 +52,7 @@ if($status==false){
             }
 
         </style>
-
+        <link rel="shortcut icon" href="./img/dirma_favicon.ico">
     </head>
 
     <body>

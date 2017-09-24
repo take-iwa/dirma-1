@@ -44,6 +44,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 		<link href="./css/style.css" rel="stylesheet">
 		<link href="./css/signin.css" rel="stylesheet">
+    <link rel="shortcut icon" href="./img/dirma_favicon.ico">
 	</head>
 
 	<body>

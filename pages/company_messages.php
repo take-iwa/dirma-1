@@ -50,6 +50,20 @@ if( isset($_GET['box']) && $_GET['box'] !== ''){
       </form>
       -->
       </div>
+      <?php if(isset($_GET['r'])):?>
+      <?php if($_GET['r'] == 1): ?>
+      <div id="profile_success" class="alert alert-info alert-dismissable">
+        <a class="panel-close close" data-dismiss="alert">×</a>
+        <i class="fa fa-coffee"></i>
+        メッセージを送信しました。
+      </div>
+      <?php elseif($_GET['r'] == 0): ?>
+      <div id="profile_error" class="alert alert-danger alert-dismissable">
+        <a class="panel-close close" data-dismiss="alert">×</a>
+        <i class="fa fa-coffee"></i>
+        メッセージを送信できませんでした。
+      </div>
+      <?php endif;endif; ?>
       <div class="inbox-body">
         <div class="mail-option">
           <?php if( $box === 'inbox' ) : ?>

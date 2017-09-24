@@ -38,12 +38,12 @@ if($status==false){
         <title>求人詳細内容</title>
         <link rel="stylesheet" href="../css/jobdetail_rhd_0001.css">
         <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
-
+        <link rel="shortcut icon" href="../img/dirma_favicon.ico">
     </head>
 
     <body>
         <div id="top">
-            <a href="index.php"><img src="../img/dirmalogo.png" alt="logo" width="100px" height="60px" id="dlogo"></a>
+            <a href="../index.php"><img src="../img/dirmalogo.png" alt="logo" width="100px" height="60px" id="dlogo"></a>
             <h2 id="corpname">株式会社リクルートホールディングス　総合職（企画戦略スタッフ）</h2>
 
         </div>

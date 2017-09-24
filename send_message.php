@@ -2,7 +2,7 @@
 require_once './init.php';
 sessChk();
 
-//プロフィール更新
+//メッセージ送信　POST
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   if ((isset($_POST['company_id']) && $_POST['company_id'] !== '') && 
       (isset($_POST['user_id']) && $_POST['user_id'] !== '') && 
@@ -33,11 +33,45 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         header("Location: {$url}");
         exit;
       } else {
-        echo "登録に失敗しました。";
+        echo "送信に失敗しました。";
       }
 
     } else {
       echo "値が入力されていません";
+    }
+  }
+}
+
+//気になる送信　GET
+if ($_SERVER['REQUEST_METHOD'] === 'GET') {
+  if ((isset($_GET['cid']) && $_GET['cid'] !== '') && 
+      (isset($_GET['uid']) && $_GET['uid'] !== '')) {
+    //求人の情報を取得
+    $job_info = getJobInfoAllFromJobId($_GET['jid']);
+
+    //エスケープ処理
+    $_GET = escape($_GET);
+    $msg = $job_info["corporate"]."　".$job_info["job_title"]."が気になります。";
+
+    $db = connectDb();
+
+    $sql = 'INSERT INTO message_table (id, company_id, user_id, message, reply_id, transmission, datetime)
+    VALUES (NULL, :company_id, :user_id, :message, 0, 1, time())';
+    $statement = $db->prepare($sql);
+    $statement->bindValue(':company_id', $_GET['cid'], PDO::PARAM_INT);
+    $statement->bindValue(':user_id', $_GET['uid'], PDO::PARAM_INT);
+    $statement->bindValue(':message', $msg, PDO::PARAM_STR);
+
+    if($statement->execute()) {
+      if($_GET['transmission'] === 0){
+        $url = "company_page.php?page=company_messages&box=inbox&r=1";
+      }else{
+        $url = "user_page.php?page=user_messages&box=inbox&r=1";
+      }
+      header("Location: {$url}");
+      exit;
+    } else {
+      echo "送信に失敗しました。";
     }
   }
 }

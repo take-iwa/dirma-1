@@ -114,13 +114,13 @@ function getCompanyAll($cid) {
 }
 
 
-/************ job_indev_table **************/
-//jobIdから全て取得
-function getJobInfoAll($jid) {
+/************ job_index_table **************/
+//Idから全て取得
+function getJobInfoAll($id) {
   $db = connectDb();
   $sql = "SELECT * FROM job_index_table WHERE id = :id";
   $statement = $db->prepare($sql);
-  $statement->bindValue(':id', $jid, PDO::PARAM_INT);
+  $statement->bindValue(':id', $id, PDO::PARAM_INT);
   $statement->execute();
   $row = $statement->fetch();
   return $row;
@@ -148,6 +148,16 @@ function getFitJobInfo($desired) {
   return $row;
 }
 
+//jobIdから全て取得
+function getJobInfoAllFromJobId($jid) {
+  $db = connectDb();
+  $sql = "SELECT * FROM job_index_table WHERE jobid = :jobid";
+  $statement = $db->prepare($sql);
+  $statement->bindValue(':jobid', $jid, PDO::PARAM_STR);
+  $statement->execute();
+  $row = $statement->fetch();
+  return $row;
+}
 
 /************ job_category **************/
 //categoryIdから文字列取得

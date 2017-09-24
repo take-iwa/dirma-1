@@ -60,4 +60,29 @@ $(function(){
     });
     return e.preventDefault();
   });
+  
+  //検索をクリックされたら
+  $('.corp_submit').on('click',function(e){
+    var corp = $(this).val();
+
+    //maker_val値 を select.php へ渡す
+    $.ajax({
+      url: "searchresult_corporate.php",
+      type: "POST",
+      dataType: 'json',
+      data: {
+        corporate: corp
+      }
+    })
+      .done(function(data){
+      $('#result-view').remove();
+      $('#divtable').append('<div class="container"><div id="result-view"></div></div>');
+      $('#result-view').append('<table class="table"><thead><tr><th class="col-md-2">社名・募集ポジション</th><th class="col-md-3">仕事内容</th><th class="col-md-3">求める人物・経験</th><th class="col-md-2">想定年収</th><th class="col-md-1">勤務地</th><th class="col-md-1">詳細情報</th></tr></thead><tbody id="job_table_body"></tbody></table>');
+      $('#job_table_body').append(data);
+    })
+      .fail(function(){
+      console.log("失敗");
+    });
+    return e.preventDefault();
+  });
 });

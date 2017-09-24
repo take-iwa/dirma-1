@@ -186,29 +186,28 @@ foreach($job_array as $key => $detaile_array){
         <table class="table corp_tbl">
           <tbody>
             <tr>
-              <td><a href="searchresult_corporate.php?corporate=株式会社グーグル" id="ggl">Google</a></td>
-              <td><a href="">Apple Japan</a></td>
-              <td><a href="">Amazon Japan</a></td>
-              <td><a href="">日本マイクロソフト</a></td>
-
+              <td><input type="submit" class="corp_submit" value="Google"></td>
+              <td><input type="submit" class="corp_submit" value="Apple Japan"></td>
+              <td><input type="submit" class="corp_submit" value="Amazon Japan"></td>
+              <td><input type="submit" class="corp_submit" value="日本マイクロソフト"></td>
             </tr>
             <tr>
-              <td><a href="">ソフトバンク</a></td>
-              <td><a href="">ファーストリテイリング</a></td>
-              <td><a href="">楽天</a></td>
-              <td><a href="">リクルートホールディングス</a></td>
+              <td><input type="submit" class="corp_submit" value="ソフトバンク"></td>
+              <td><input type="submit" class="corp_submit" value="ファーストリテイリング"></td>
+              <td><input type="submit" class="corp_submit" value="楽天"></td>
+              <td><input type="submit" class="corp_submit" value="リクルートホールディングス"></td>
             </tr>
             <tr>
-              <td><a href="">トヨタ自動車</a></td>
-              <td><a href="">ソニー</a></td>
-              <td><a href="">パナソニック</a></td>
-              <td><a href="">本田技研工業</a></td>
+              <td><input type="submit" class="corp_submit" value="トヨタ自動車"></td>
+              <td><input type="submit" class="corp_submit" value="ソニー"></td>
+              <td><input type="submit" class="corp_submit" value="パナソニック"></td>
+              <td><input type="submit" class="corp_submit" value="本田技研工業"></td>
             </tr>
             <tr>
-              <td><a href="">三菱商事</a></td>
-              <td><a href="">三井物産</a></td>
-              <td><a href="">伊藤忠商事</a></td>
-              <td><a href="">住友商事</a></td>
+              <td><input type="submit" class="corp_submit" value="三菱商事"></td>
+              <td><input type="submit" class="corp_submit" value="三井物産"></td>
+              <td><input type="submit" class="corp_submit" value="伊藤忠商事"></td>
+              <td><input type="submit" class="corp_submit" value="住友商事"></td>
             </tr>
           </tbody>
         </table>

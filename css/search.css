@@ -117,9 +117,14 @@ a.btn-corp:visited {
   text-align:center;
 }
 
-.corp_tbl tbody tr td a {
+.corp_tbl tbody tr td input {
   padding: 5px 12px;
   color: #f5f5f5;
   background-color: #68cde8;
   border-radius: 18px;
+  border-width: 0;
+}
+
+.corp_tbl tbody tr td input:hover {
+  background-color: #28b7dd;
 }

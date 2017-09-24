@@ -12,8 +12,8 @@ $jobtype_detail = $_POST["jobtype_detail"];
 $min_salary = $_POST["salary"];
 $min = json_decode($min_salary)[0];
 $max = json_decode($min_salary)[1];
-ChromePhp::log($_POST);
-ChromePhp::log($min);
+//ChromePhp::log($_POST);
+//ChromePhp::log($min);
 //1.  DB接続します
 $pdo = connectDb();
 
@@ -87,7 +87,8 @@ if($status==false){
     $view .= '<td><a href="jobdetail/jobdetail_fr_0001.php" class="btn btn-info btn-jobdetaile">Dirma取材<br>職種詳細</a><br>
     <a href="https://www.fastretailing.com/employment/ja/fastretailing/jp/career/corporate/joblist/detail/?id=627" class="btn btn-success btn-corp">企業サイト<br>職種詳細</a></td>';
     $view .='</tr>';
-  } }
+  }
+}
 
 header('Content-Type: application/text');
 //json形式でバックする

@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Document</title>
+    <title>DIRMA</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
@@ -132,19 +132,19 @@
     <p id="gallery">GALLERY</p>
         <ul class="corp1">
     <li class="img1">
-        <a href="http://www.recruit.jp/employment/" target="_blank"><img src="../img/1.png" width="420" height="280"><p>株式会社リクルートホールディングス</p>
+        <a href="http://www.recruit.jp/employment/" target="_blank"><img src="./img/1.png" width="420" height="280"><p>株式会社リクルートホールディングス</p>
         </a>
         <p class="#1">#働き方 #海外 #革新性</p>
     </li>
 
     <li class="img2">
-        <a href="https://corp.rakuten.co.jp/careers/top/" target="_blank"><img src="../img/2.png" width="420" height="280"><p>楽天株式会社</p>
+        <a href="https://corp.rakuten.co.jp/careers/top/" target="_blank"><img src="./img/2.png" width="420" height="280"><p>楽天株式会社</p>
         </a>
         <p class="#1">#働き方 #海外 #革新性</p>
     </li>
 
     <li class="img3">
-        <a href="https://www.fastretailing.com/employment/ja/" target="_blank"><img src="../img/3.png" width="420" height="280"><p>ファーストリテイリング</p>
+        <a href="https://www.fastretailing.com/employment/ja/" target="_blank"><img src="./img/3.png" width="420" height="280"><p>ファーストリテイリング</p>
         </a>
         <p class="#1">#働き方 #海外 #革新性</p>
     </li>
@@ -152,19 +152,19 @@
 
     <ul class="corp1">
     <li class="img4">
-        <a href="http://mitsui-career.com/" target="_blank"><img src="../img/4.png" width="420" height="280"><p>三井物産株式会社</p>
+        <a href="http://mitsui-career.com/" target="_blank"><img src="./img/4.png" width="420" height="280"><p>三井物産株式会社</p>
         </a>
         <p class="#1">#働き方 #海外 #革新性</p>
     </li>
 
     <li class="img5">
-        <a href="http://www-07.ibm.com/employment/jp/cp01/" target="_blank"><img src="../img/5.png" width="420" height="280"><p>株式会社日本IBM</p>
+        <a href="http://www-07.ibm.com/employment/jp/cp01/" target="_blank"><img src="./img/5.png" width="420" height="280"><p>株式会社日本IBM</p>
         </a>
         <p class="#1">#働き方 #海外 #革新性</p>
     </li>
 
     <li class="img6">
-        <a href="https://www.amazon.co.jp/b/ref=s9_acss_bw_h1_hrmid_md1_w?node=5121262051&pf_rd_m=A3P5ROKL5A1OLE&pf_rd_s=merchandised-search-1&pf_rd_r=SMC1W6ZEVE1G43SZ030N&pf_rd_t=101&pf_rd_p=6b72eb49-8139-43e1-ba7f-3a5db6dd7975&pf_rd_i=5121604051"><img src="../img/6.png" target="_blank" width="420" height="280"><p>株式会社アマゾン</p>
+        <a href="https://www.amazon.co.jp/b/ref=s9_acss_bw_h1_hrmid_md1_w?node=5121262051&pf_rd_m=A3P5ROKL5A1OLE&pf_rd_s=merchandised-search-1&pf_rd_r=SMC1W6ZEVE1G43SZ030N&pf_rd_t=101&pf_rd_p=6b72eb49-8139-43e1-ba7f-3a5db6dd7975&pf_rd_i=5121604051"><img src="./img/6.png" target="_blank" width="420" height="280"><p>株式会社アマゾン</p>
         </a>
         <p class="#1">#働き方 #海外 #革新性</p>
     </li>

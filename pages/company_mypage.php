@@ -11,7 +11,7 @@ foreach($user_array as $key => $value){
                     <div class="thumbnail">
                       <div class="caption">
                         <div class="col-lg-12">
-                          <span class="glyphicon glyphicon glyphicon-user"></span>
+                          <span class="glyphicon glyphicon glyphicon-user" style="color:#0085c3"></span>
                         </div>
                         <div class="col-lg-12 well well-add-card">';
     $user_view .= '<h4>'.$value['family_name'].' '.$value['first_name'].'( '.$value['family_kana'].' '.$value['first_kana'].' )</h4>
@@ -19,8 +19,6 @@ foreach($user_array as $key => $value){
     $user_view .= '<div class="col-lg-12">
                     <p class="text-muted">生年月日：'.$value['birthday'].'</p>
                     <p class="text-muted">直近の勤め先：'.$value['company'].'</p>
-                    <p class="text-muted">勤続：'.$value['year'].'年</p>
-                    <p class="text-muted">希望職種：'.$value['desired_job'].'</p>
                     <p class="text-muted">希望職種詳細：'.$value['desired_detail'].'</p>
                     <p class="text-muted">希望年収：'.$value['desired_income'].'万円</p>
                     <p class="text-muted">希望勤務地：'.$value['desired_region'].'</p>
@@ -31,46 +29,48 @@ foreach($user_array as $key => $value){
                   <div class="modal fade" id="profile'.$value['id'].'">
                     <div class="modal-dialog">
                       <div class="modal-content">
-                        <div class="modal-header">
+                        <div class="modal-header modal-header-title">
                           <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                          <h4 class="modal-title">'.$value['family_name'].' '.$value['first_name'].'( '.$value['family_kana'].' '.$value['first_kana'].' )</h4>
+                          <h4 class="modal-title" style="font-weight:700;">'.$value['family_name'].' '.$value['first_name'].'( '.$value['family_kana'].' '.$value['first_kana'].' )</h4>
                         </div>
-                        <div class="modal-body">プロフィール</div>
+                        <div class="modal-body">
+                          <img src="./file/acount-214x214.png" style="width: 180px;hight:auto;">
+                        </div>
                           <table class="table table-user-information">
                             <tbody>
                               <tr>
-                                <td>生年月日:</td>
-                                <td>'.$value['birthday'].'</td>
-                              </tr>
-                              <tr>
-                                <td>性別:</td>
+                                <td style="width: 85px;">性別:</td>
                                 <td>'.(( $value["gender"] == 0) ? "男性" : "女性").'</td>
                               </tr>
                               <tr>
-                                <td>在籍企業:</td>
+                                <td style="width: 85px;">生年月日:</td>
+                                <td>'.$value['birthday'].'</td>
+                              </tr>
+                              <tr>
+                                <td style="width: 85px;">在籍企業:</td>
                                 <td>'.$value['company'].'</td>
                               </tr>
                               <tr>
-                                <td>在籍年数:</td>
+                                <td style="width: 85px;">在籍年数:</td>
                                 <td>'.$value['year'].'年</td>
                               </tr>
                               <tr>
-                                <td>現収入:</td>
+                                <td style="width: 85px;">現収入:</td>
                                 <td>'.$value['annual_income'].'万円</td>
                               </tr>
                               <tr>
-                                <td>転職回数</td>
+                                <td style="width: 85px;">転職回数</td>
                                 <td>'.$value['experience_num'].'回</td>
                               </tr>
                               <tr>
-                                <td>職務経歴:</td>
+                                <td style="width: 85px;">職務経歴:</td>
                                 <td>'.$value['career'].'</td>
                               </tr>
-                                <td>最終学歴:</td>
+                                <td style="width: 85px;">最終学歴:</td>
                                 <td>'.$value['school'].'　'.$value['department'].'</td>
                               </tr>
                               </tr>
-                                <td>希望内容:</td>
+                                <td style="width: 85px;">希望内容:</td>
                                 <td>'.$value['desired_contents'].'</td>
                               </tr>
 

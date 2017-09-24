@@ -9,6 +9,21 @@ $category_list = array();
 while($row = $stmt -> fetch(PDO::FETCH_ASSOC)){
   $category_list[$row['id']] = $row['job'];
 }
+
+$view = "";
+$job_array = getNewJobInfo(30);
+foreach($job_array as $key => $detaile_array){
+  $view .='<tr>';
+  $view .= '<td class="text-success">'.$detaile_array["corporate"].'<br>'.$detaile_array["job_title"].'</td>';
+  $view .= '<td><p class="jc">'.$detaile_array["job_contents"].'</p></td>';
+  $view .= '<td>'.$detaile_array["wanted"].'</td>';
+  $view .= '<td>'.$detaile_array["comp_min"].'〜'.$detaile_array["comp_max"].'万円</td>';
+  $view .= '<td>'.$detaile_array["workplace"].'</td>';
+  $view .= '<td><a href="jobdetail/jobdetail_fr_0001.php" class="btn btn-info btn-jobdetaile">Dirma取材<br>職種詳細</a><br>
+    <a href="https://www.fastretailing.com/employment/ja/fastretailing/jp/career/corporate/joblist/detail/?id=627" class="btn btn-success btn-corp">企業サイト<br>職種詳細</a></td>';
+  $view .='</tr>';
+}
+
 ?>
 
 
@@ -17,9 +32,11 @@ while($row = $stmt -> fetch(PDO::FETCH_ASSOC)){
 
   <head>
     <meta charset="UTF-8">
-    <title>Document</title>
-    <link rel="stylesheet" href="./css/search.css">
+    <title>DIRMA-検索</title>
+
     <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet" id="themesid">
+    <link rel="stylesheet" href="./css/search.css">
     <style type="text/css">
       a {
         text-decoration: none;
@@ -34,24 +51,45 @@ while($row = $stmt -> fetch(PDO::FETCH_ASSOC)){
       }
 
     </style>
+    <link rel="shortcut icon" href="./img/dirma_favicon.ico">
 
   </head>
 
   <body>
-    <header>
-      <img src="./img/dirma_logo.png" id="logo" alt="">
-    </header>
+    <nav class="navbar navbar-default navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+
+          <h3 hidden>DIRMA</h3>
+          <a href="./"><img src="./img/dirma_logo.png" class="logo img-responsive" style="width:5em;margin-left:1em;padding:2px 0"></a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+          <ul class="nav navbar-nav navbar-right">
+            <li id="home" data-toggle="popover" data-content="ホーム"><a href="index.php"><span class="glyphicon glyphicon-home" aria-hidden="true"></span></a></li>
+            <li id="notification" data-toggle="popover" data-content="お知らせ"><a href="#"><span class="glyphicon glyphicon-bell" aria-hidden="true"></span></a></li>
+          </ul>
+        </div>
+        <!--/.nav-collapse -->
+      </div>
+    </nav>
 
     <div id="search">
 
       <div id="job">
-        <p id="jobs">求人内容で検索</p>
+        <h4 id="jobs">求人内容で検索</h4>
         <form method="post">
 
           <div class="jobsearch">
             <p class="stitle" id="sort">職種&emsp;&emsp;</p>
-            <select class="job_category jobtypes" name="job_category" id="category">
-              <option>選択してください&emsp;</option>
+            <select class="job_category jobtypes" name="job_category" id="category" style="width:270px;">
+              <option value="none">選択してください&emsp;</option>
+              <option value="none">指定なし</option>
               <?php
                 foreach($category_list as $key => $job_name){
                   echo '<option value="'.$key.'">'.$job_name.'</option>';
@@ -62,14 +100,15 @@ while($row = $stmt -> fetch(PDO::FETCH_ASSOC)){
 
           <div class="jobsearch">
             <p class="stitle">職種詳細</p>
-            <select class="jobtype_detail jobtypes" name="jobtype_detail" id="detaile">
-              <option class="">先に職種を選択してください&emsp;</option>
+            <select class="jobtype_detail jobtypes" name="jobtype_detail" id="detaile" style="width:270px;">
+              <option value="none">先に職種を選択してください&emsp;</option>
             </select>
           </div>
 
           <div class="jobsearch">
             <p class="stitle">勤務地&emsp;</p>
             <select name="pref_id" id="place" class="jobtypes">
+              <option value="none">指定なし</option>
               <option value="東京都">東京都</option>
               <option value="北海道">北海道</option>
               <option value="青森県">青森県</option>
@@ -123,6 +162,7 @@ while($row = $stmt -> fetch(PDO::FETCH_ASSOC)){
           <div class="jobsearch">
             <p class="stitle">年収&emsp;&emsp;</p>
             <select name="salary" id="salary" class="jobtypes">
+              <option value="[none,none]">指定なし</option>
               <option value="[600,800]">600〜800万円</option>
               <option value="[1,400]">〜400万円</option>
               <option value="[400,600]">400〜600万円</option>
@@ -134,7 +174,7 @@ while($row = $stmt -> fetch(PDO::FETCH_ASSOC)){
 
             </select>
           </div>
-          <input type="button" id="job_submit" value="求人を検索">
+          <input type="button" class="btn btn-primary" id="job_submit" value="　求人を検索　">
 
         </form>
 
@@ -142,48 +182,74 @@ while($row = $stmt -> fetch(PDO::FETCH_ASSOC)){
 
       <div id="company">
 
-        <p id="coms">企業名で検索</p>
-        <table id="table">
-          <tr>
-            <td class="td1"> <a href="searchresult_corporate.php?corporate=株式会社グーグル" id="ggl">Google</a></td>
-            <td class="td2"> <a href="indexb.php">Apple Japan</a>
-            </td>
-            <td class="td3"> <a href="indexc.php">Amazon Japan</a></td>
-            <td class="td4"> <a href="indexa.php">日本マイクロソフト</a></td>
+        <h4 id="coms">企業名で検索</h4>
+        <table class="table corp_tbl">
+          <tbody>
+            <tr>
+              <td><a href="searchresult_corporate.php?corporate=株式会社グーグル" id="ggl">Google</a></td>
+              <td><a href="">Apple Japan</a></td>
+              <td><a href="">Amazon Japan</a></td>
+              <td><a href="">日本マイクロソフト</a></td>
 
-          </tr>
-          <tr>
-            <td class="td1"> <a href="index.php">ソフトバンク</a></td>
-            <td class="td2"> <a href="index.php">ファーストリテイリング</a></td>
-            <td class="td3"> <a href="index.php">楽天</a></td>
-            <td class="td4"> <a href="index.php">リクルートホールディングス</a></td>
-          </tr>
-          <tr>
-            <td class="td1"><a href="indexa.php">トヨタ自動車</a></td>
-            <td class="td2"> <a href="indexa.php">ソニー</a></td>
-            <td class="td3"> <a href="indexa.php">パナソニック</a></td>
-            <td class="td4"> <a href="indexa.php">本田技研工業</a></td>
-          </tr>
-          <tr>
-            <td class="td1"> <a href="indexa.php">三菱商事</a></td>
-            <td class="td2"> <a href="indexa.php">三井物産</a></td>
-            <td class="td3"> <a href="indexa.php">伊藤忠商事</a></td>
-            <td class="td4"> <a href="indexa.php">住友商事</a></td>
-          </tr>
-
+            </tr>
+            <tr>
+              <td><a href="">ソフトバンク</a></td>
+              <td><a href="">ファーストリテイリング</a></td>
+              <td><a href="">楽天</a></td>
+              <td><a href="">リクルートホールディングス</a></td>
+            </tr>
+            <tr>
+              <td><a href="">トヨタ自動車</a></td>
+              <td><a href="">ソニー</a></td>
+              <td><a href="">パナソニック</a></td>
+              <td><a href="">本田技研工業</a></td>
+            </tr>
+            <tr>
+              <td><a href="">三菱商事</a></td>
+              <td><a href="">三井物産</a></td>
+              <td><a href="">伊藤忠商事</a></td>
+              <td><a href="">住友商事</a></td>
+            </tr>
+          </tbody>
         </table>
 
       </div>
 
     </div>
-    <hr>
-    
+
     <!-- 検索結果 -->
     <div id="divtable">
-      <div id="result-view">
+      <div class="container">
+        <div id="result-view">
+          <table class="table table-hover">
+            <thead>
+              <tr>
+                <th class="col-md-2">社名・募集ポジション</th>
+                <th class="col-md-3">仕事内容</th>
+                <th class="col-md-3">求める人物・経験</th>
+                <th class="col-md-2">想定年収</th>
+                <th class="col-md-1">勤務地</th>
+                <th class="col-md-1">詳細情報</th></tr>
+              </thead>
+            <tbody id="job_table_body">
+              <?=$view?>
+            </tbody>
+          </table>
+        </div>
       </div>
-
     </div>
+
+    <footer class="footer">
+      <div class="container">
+        <ul class="nav navbar-nav">
+          <li><a href="#about">運営会社</a></li>
+          <li><a href="#about">利用規約</a></li>
+          <li><a href="#contact">プライバシーポリシー</a></li>
+          <li><a href="#contact">お問い合わせ</a></li>
+        </ul>
+      </div>
+      <small class="text-muted">Copyright Dirma, Inc.</small>
+    </footer>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <script src="./js/script.js"></script>

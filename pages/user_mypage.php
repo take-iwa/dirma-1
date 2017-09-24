@@ -8,8 +8,8 @@ $job_view = '';
 $job_array = getNewJobInfo(2);
 //ChromePhp::log($job_array);
 //1件目
-$job_view .= '<a href="'.'jobdetail/detail_fr_gubp.php'.'"><div id="'.$job_array[0]['id'].'" class="col-sm-5 lib-item" data-category="view"><div class="lib-panel"><div class="row box-shadow"><div class="col-md-6">';
-$job_view .= '<img class="lib-img-show" src="'.'img/corp_logo/FAST_RETAILING_logo.png'.'">';
+$job_view .= '<a href="'.'jobdetail/jobdetail_fr_0001.php'.'"><div id="'.$job_array[0]['id'].'" class="col-sm-5 lib-item" data-category="view"><div class="lib-panel"><div class="row box-shadow"><div class="col-md-6">';
+$job_view .= '<img class="lib-img-show" src="'.'file/acount-214x214.png'.'">';
 $job_view .= '</div><div class="col-md-6"><div class="lib-row lib-header"><h4>';
 $job_view .= $job_array[0]['corporate'];
 $job_view .= '</h4><div class="lib-header-seperator"></div></div><div class="lib-row lib-desc">';
@@ -20,8 +20,8 @@ $job_view .= '<p>仕事内容：'.mb_substr($job_array[0]['job_contents'], 0, 30
 $job_view .= '</div></div></div></div></div></a>';
 $job_view .= '<div class="col-md-1"></div>';
 //2件目
-$job_view .= '<a href="'.'jobdetail/detail_fr_gubp.php'.'"><div id="'.$job_array[1]['id'].'" class="col-sm-5 lib-item" data-category="ui"><div class="lib-panel"><div class="row box-shadow"><div class="col-md-6">';
-$job_view .= '<img class="lib-img-show" src="'.'img/corp_logo/google_logo.png'.'">';
+$job_view .= '<a href="'.'jobdetail/jobdetail_fr_0001.php'.'"><div id="'.$job_array[1]['id'].'" class="col-sm-5 lib-item" data-category="ui"><div class="lib-panel"><div class="row box-shadow"><div class="col-md-6">';
+$job_view .= '<img class="lib-img-show" src="'.'file/acount-214x214.png'.'">';
 $job_view .= '</div><div class="col-md-6"><div class="lib-row lib-header"><h4>';
 $job_view .= $job_array[1]['corporate'];
 $job_view .= '</h4><div class="lib-header-seperator"></div></div><div class="lib-row lib-desc">';
@@ -39,8 +39,8 @@ if (!$user_info['desired_job'] ==""){
   //ChromePhp::log($user_info['desired_job']);
   //ChromePhp::log($dirma_array);
   //1件目
-  $dirma_view = '<a href="'.'jobdetail/detail_fr_gubp.php'.'"><div id="'.$dirma_array[0]['id'].'" class="col-sm-5 lib-item" data-category="view"><div class="lib-panel"><div class="row box-shadow"><div class="col-md-6">';
-  $dirma_view .= '<img class="lib-img-show" src="'.'img/corp_logo/softbank_logo.png'.'">';
+  $dirma_view = '<a href="'.'jobdetail/jobdetail_fr_0001.php'.'"><div id="'.$dirma_array[0]['id'].'" class="col-sm-5 lib-item" data-category="view"><div class="lib-panel"><div class="row box-shadow"><div class="col-md-6">';
+  $dirma_view .= '<img class="lib-img-show" src="'.'file/acount-214x214.png'.'">';
   $dirma_view .= '</div><div class="col-md-6"><div class="lib-row lib-header"><h4>';
   $dirma_view .= $dirma_array[0]['corporate'];
   $dirma_view .= '</h4><div class="lib-header-seperator"></div></div><div class="lib-row lib-desc">';
@@ -51,8 +51,8 @@ if (!$user_info['desired_job'] ==""){
   $dirma_view .= '</div></div></div></div></div></a>';
   $dirma_view .= '<div class="col-md-1"></div>';
   //2件目
-  $dirma_view .= '<a href="'.'jobdetail/detail_fr_gubp.php'.'"><div id="'.$dirma_array[1]['id'].'" class="col-sm-5 lib-item" data-category="ui"><div class="lib-panel"><div class="row box-shadow"><div class="col-md-6">';
-  $dirma_view .= '<img class="lib-img-show" src="'.'img/corp_logo/google_logo.png'.'">';
+  $dirma_view .= '<a href="'.'jobdetail/jobdetail_fr_0001.php'.'"><div id="'.$dirma_array[1]['id'].'" class="col-sm-5 lib-item" data-category="ui"><div class="lib-panel"><div class="row box-shadow"><div class="col-md-6">';
+  $dirma_view .= '<img class="lib-img-show" src="'.'file/acount-214x214.png'.'">';
   $dirma_view .= '</div><div class="col-md-6"><div class="lib-row lib-header"><h4>';
   $dirma_view .= $dirma_array[1]['corporate'];
   $dirma_view .= '</h4><div class="lib-header-seperator"></div></div><div class="lib-row lib-desc">';

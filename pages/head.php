@@ -15,11 +15,13 @@
     <title>DIRMA</title>
 
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet" id="themesid">
+    <link rel='stylesheet prefetch' href='http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css'>
+
     <link href="./css/user.css" rel="stylesheet">
     <link href="./css/company.css" rel="stylesheet">
     <link href="./css/style.css" rel="stylesheet">
     <link href="./css/message.css" rel="stylesheet">
-    <link rel='stylesheet prefetch' href='http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css'>
+    <link rel="shortcut icon" href="./img/dirma_favicon.ico">
     <!--[if lt IE 9]>
     <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
     <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>

@@ -147,4 +147,18 @@ function getFitJobInfo($desired) {
   $row = $statement->fetchAll();
   return $row;
 }
+
+
+/************ job_category **************/
+//categoryIdから文字列取得
+function getJobCtbrStr($ctid) {
+  $db = connectDb();
+  $sql = "SELECT * FROM job_category WHERE id = :id";
+  $statement = $db->prepare($sql);
+  $statement->bindValue(':id', $ctid, PDO::PARAM_INT);
+  $statement->execute();
+  $row = $statement->fetch();
+  return $row['job'];
+}
+
 ?>

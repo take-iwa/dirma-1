@@ -5,7 +5,7 @@ $company_info = getCompanyAll($_SESSION['company_id']);
 $user_view = '';
 $user_array = getUserInfo(30);
 //ChromePhp::log($user_array);
-  //ChromePhp::log($value);
+foreach($user_array as $key => $value){
   if($value['desired_detail'] != ""){
     $user_view .= '<div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
                     <div class="thumbnail">
@@ -78,7 +78,7 @@ $user_array = getUserInfo(30);
                           </table>
                         <div class="modal-footer">
                           <a href="company_page.php?page=company_messages&box=nice&uid='.$value['id'].'"><button type="button" class="btn btn-primary btn-xs btn-update btn-add-card">メッセージを送る</button></a>
-                          <button type="button" class="btn btn-primary" data-dismiss="modal">閉じる</button>
+                          <button type="button" class="btn btn-primary btn-xs btn-update btn-add-card" data-dismiss="modal">閉じる</button>
                          </div>
                       </div>
                     </div>

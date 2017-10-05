@@ -11,17 +11,17 @@ foreach($user_array as $key => $value){
                     <div class="thumbnail">
                       <div class="caption">
                         <div class="col-lg-12">
-                          <span class="glyphicon glyphicon glyphicon-user" style="color:#0085c3"></span>
+                          <img class="img-circle" src="'.$value['img'].'" style="width: 50px;hight:auto;margin:0;">
                         </div>
                         <div class="col-lg-12 well well-add-card">';
-    $user_view .= '<h4>'.$value['family_name'].' '.$value['first_name'].'( '.$value['family_kana'].' '.$value['first_kana'].' )</h4>
+    $user_view .= '<h4 style="padding:5px 0">'.$value['family_name'].' '.$value['first_name'].'( '.$value['family_kana'].' '.$value['first_kana'].' )</h4>
                         </div>';
     $user_view .= '<div class="col-lg-12">
                     <p class="text-muted">生年月日：'.$value['birthday'].'</p>
                     <p class="text-muted">直近の勤め先：'.$value['company'].'</p>
-                    <p class="text-muted">希望職種詳細：'.$value['desired_detail'].'</p>
-                    <p class="text-muted">希望年収：'.$value['desired_income'].'万円</p>
-                    <p class="text-muted">希望勤務地：'.$value['desired_region'].'</p>
+                    <p class="text-muted">職種詳細：'.$value['job_detail'].'</p>
+                    <p class="text-muted">在籍年数：'.$value['year'].'年</p>
+                    <p class="text-muted">最終学歴：'.$value['school'].'　'.$value['department'].'</p>
                   </div>
                   <a href="company_page.php?page=company_messages&box=nice&uid='.$value['id'].'"><button type="button" class="btn btn-primary btn-xs btn-update btn-add-card">メッセージを送る</button></a>
                   <button type="button" class="btn btn-primary btn-xs btn-update btn-add-card" data-toggle="modal" data-target="#profile'.$value['id'].'">　　詳細　　</button>
@@ -90,9 +90,14 @@ foreach($user_array as $key => $value){
 ?>
 <div id="tourpackages-carousel">
   <div class="row">
-    <div class="col-lg-12">
+    <div class="col-md-12">
       <h1>転職希望者検索</h1>
-    </div><br>
+      <from>
+        <input class="from" type="search">
+        <input type="button" value="検索">
+      </from>
+    </div>
+    
     <?=$user_view ?>
   
   <!-- End row -->

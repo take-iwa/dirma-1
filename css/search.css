@@ -24,7 +24,6 @@ header {
 }
 
 #job {
-  margin-left: 80px;
   width: 350px;
 }
 
@@ -72,14 +71,12 @@ header {
 }
 
 #search {
-  margin-left: 5em;
-  display: flex;
   border-bottom: solid 1px #EEEEEE;
   padding-bottom: 20px;
 }
 
 #company {
-  margin-left: 100px;
+  margin-left: 1em;
 }
 
 #coms {

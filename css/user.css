@@ -8,7 +8,6 @@ body {
     margin-bottom: 20Px;
 }
 .lib-panel img {
-    max-height: 16em;
     max-width: 230px;
     width: auto;
     height: auto;
@@ -17,7 +16,6 @@ body {
 
 .lib-panel .row,
 .lib-panel .col-md-6 {
-    height: 16em;
     padding: 0;
     background-color: #FFFFFF;
 }

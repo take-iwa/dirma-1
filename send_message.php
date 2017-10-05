@@ -1,6 +1,7 @@
 <?php
 require_once './init.php';
 sessChk();
+include 'ChromePhp.php';
 
 //メッセージ送信　POST
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -33,7 +34,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         header("Location: {$url}");
         exit;
       } else {
-        echo "送信に失敗しました。";
+        echo "送信に失敗しました。POST";
       }
 
     } else {
@@ -51,16 +52,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
 
     //エスケープ処理
     $_GET = escape($_GET);
-    $msg = $job_info["corporate"]."　".$job_info["job_title"]."が気になります。";
-
+    $message = $job_info["corporate"]."　".$job_info["job_title"]."の求人が気になります。";
+    ChromePhp::log($msg);
+    
     $db = connectDb();
 
     $sql = 'INSERT INTO message_table (id, company_id, user_id, message, reply_id, transmission, datetime)
-    VALUES (NULL, :company_id, :user_id, :message, 0, 1, time())';
+    VALUES (NULL, :company_id, :user_id, :message, 0, 1, sysdate())';
     $statement = $db->prepare($sql);
     $statement->bindValue(':company_id', $_GET['cid'], PDO::PARAM_INT);
     $statement->bindValue(':user_id', $_GET['uid'], PDO::PARAM_INT);
-    $statement->bindValue(':message', $msg, PDO::PARAM_STR);
+    $statement->bindValue(':message', $message, PDO::PARAM_STR);
 
     if($statement->execute()) {
       if($_GET['transmission'] === 0){
@@ -71,7 +73,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
       header("Location: {$url}");
       exit;
     } else {
-      echo "送信に失敗しました。";
+      echo "送信に失敗しました。GET";
+      $error = $statement->errorInfo();
+      exit("ErrorQuery:".$error[2]);
     }
   }
 }

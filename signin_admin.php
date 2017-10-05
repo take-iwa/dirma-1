@@ -9,6 +9,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 	if (!$user_id = getUserId($email, $password, $db)) {
 		$error = 'パスワードとメールアドレスが正しくありません';
 	} else if (empty($error)) {
+    if (!isUserAdmin($user_id)) {
+      $dashboard_url = "index.php";
+      header("Location: {$dashboard_url}");
+      exit;
+    }
 		session_regenerate_id(true);
 		$_SESSION['admin_id'] = $user_id;
 		$_SESSION['sess_id'] = session_id();

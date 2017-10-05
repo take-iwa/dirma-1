@@ -10,7 +10,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 		$db = connectDb();
 		$hash = password_hash($password, PASSWORD_DEFAULT);
 		$sql = 'INSERT INTO user_table (id, email, lpw, kanri_flg, date)
-      VALUES (NULL, :email, :password, 0, time())';
+      VALUES (NULL, :email, :password, 0, sysdate())';
 		$statement = $db->prepare($sql);
 		$statement->bindValue(':email', $email, PDO::PARAM_STR);
 		$statement->bindValue(':password', $hash, PDO::PARAM_STR);

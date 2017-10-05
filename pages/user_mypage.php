@@ -9,7 +9,7 @@ $job_array = getNewJobInfo(2);
 //ChromePhp::log($job_array);
 //1件目
 $job_view .= '<a href="'.'jobdetail/jobdetail_fr_0001.php'.'"><div id="'.$job_array[0]['id'].'" class="col-sm-5 lib-item" data-category="view"><div class="lib-panel"><div class="row box-shadow"><div class="col-md-6">';
-$job_view .= '<img class="lib-img-show" src="'.'file/acount-214x214.png'.'">';
+$job_view .= '<img class="img-responsive img-rounded" src="'.$job_array[0]['img_url'].'">';
 $job_view .= '</div><div class="col-md-6"><div class="lib-row lib-header"><h4>';
 $job_view .= $job_array[0]['corporate'];
 $job_view .= '</h4><div class="lib-header-seperator"></div></div><div class="lib-row lib-desc">';
@@ -21,7 +21,7 @@ $job_view .= '</div></div></div></div></div></a>';
 $job_view .= '<div class="col-md-1"></div>';
 //2件目
 $job_view .= '<a href="'.'jobdetail/jobdetail_fr_0001.php'.'"><div id="'.$job_array[1]['id'].'" class="col-sm-5 lib-item" data-category="ui"><div class="lib-panel"><div class="row box-shadow"><div class="col-md-6">';
-$job_view .= '<img class="lib-img-show" src="'.'file/acount-214x214.png'.'">';
+$job_view .= '<img class="img-responsive img-rounded" src="'.$job_array[1]['img_url'].'">';
 $job_view .= '</div><div class="col-md-6"><div class="lib-row lib-header"><h4>';
 $job_view .= $job_array[1]['corporate'];
 $job_view .= '</h4><div class="lib-header-seperator"></div></div><div class="lib-row lib-desc">';
@@ -40,7 +40,7 @@ if (!$user_info['desired_job'] ==""){
   //ChromePhp::log($dirma_array);
   //1件目
   $dirma_view = '<a href="'.'jobdetail/jobdetail_fr_0001.php'.'"><div id="'.$dirma_array[0]['id'].'" class="col-sm-5 lib-item" data-category="view"><div class="lib-panel"><div class="row box-shadow"><div class="col-md-6">';
-  $dirma_view .= '<img class="lib-img-show" src="'.'file/acount-214x214.png'.'">';
+  $dirma_view .= '<img class="img-responsive" src="'.$dirma_array[0]['img_url'].'">';
   $dirma_view .= '</div><div class="col-md-6"><div class="lib-row lib-header"><h4>';
   $dirma_view .= $dirma_array[0]['corporate'];
   $dirma_view .= '</h4><div class="lib-header-seperator"></div></div><div class="lib-row lib-desc">';
@@ -52,7 +52,7 @@ if (!$user_info['desired_job'] ==""){
   $dirma_view .= '<div class="col-md-1"></div>';
   //2件目
   $dirma_view .= '<a href="'.'jobdetail/jobdetail_fr_0001.php'.'"><div id="'.$dirma_array[1]['id'].'" class="col-sm-5 lib-item" data-category="ui"><div class="lib-panel"><div class="row box-shadow"><div class="col-md-6">';
-  $dirma_view .= '<img class="lib-img-show" src="'.'file/acount-214x214.png'.'">';
+  $dirma_view .= '<img class="img-responsive" src="'.$dirma_array[1]['img_url'].'">';
   $dirma_view .= '</div><div class="col-md-6"><div class="lib-row lib-header"><h4>';
   $dirma_view .= $dirma_array[1]['corporate'];
   $dirma_view .= '</h4><div class="lib-header-seperator"></div></div><div class="lib-row lib-desc">';
@@ -87,7 +87,7 @@ if (!$user_info['desired_job'] ==""){
     <strong>Oh snap!</strong> Change a few things up and try submitting again.
   </div>
 
-  <div class="page-header">
+  <div class="row page-header">
     <h4>新着求人情報</h4>
   </div>
 
@@ -95,7 +95,7 @@ if (!$user_info['desired_job'] ==""){
     <?=$job_view?>
   </div>
 
-  <div class="page-header">
+  <div class="row page-header">
     <h4>DIRMAからのおすすめ</h4>
   </div>
     

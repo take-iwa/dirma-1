@@ -34,7 +34,7 @@ foreach($user_array as $key => $value){
                           <h4 class="modal-title" style="font-weight:700;">'.$value['family_name'].' '.$value['first_name'].'( '.$value['family_kana'].' '.$value['first_kana'].' )</h4>
                         </div>
                         <div class="modal-body">
-                          <img src="./file/acount-214x214.png" style="width: 180px;hight:auto;">
+                          <img class="img-circle" src="'.$value['img'].'" style="width: 180px;hight:auto;">
                         </div>
                           <table class="table table-user-information">
                             <tbody>

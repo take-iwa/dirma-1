@@ -85,6 +85,16 @@ function getUserInfo($num) {
   return $row;
 }
 
+//ユーザーID指定でユーザーテーブルから管理フラグ取得()
+function isUserAdmin($uid) {
+  $db = connectDb();
+  $sql = "SELECT kanri_flg FROM user_table WHERE id = :id";
+  $statement = $db->prepare($sql);
+  $statement->bindValue(':id', $uid, PDO::PARAM_INT);
+  $statement->execute();
+  $row = $statement->fetch();
+  return $row;
+}
 
 /************ company_table ************/
 

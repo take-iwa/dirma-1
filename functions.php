@@ -74,12 +74,17 @@ function getUserAll($uid) {
 	return $row;
 }
 
-//新しく登録した順に指定件数分取得
+//新しく登録した順に指定件数分取得(0指定は全件)
 function getUserInfo($num) {
   $db = connectDb();
-  $sql = "SELECT * FROM user_table order by date desc limit :num";
-  $statement = $db->prepare($sql);
-  $statement->bindValue(':num', $num, PDO::PARAM_INT);
+  if($num > 0){
+    $sql = "SELECT * FROM user_table order by date desc limit :num";
+    $statement = $db->prepare($sql);
+    $statement->bindValue(':num', $num, PDO::PARAM_INT);
+  } else{
+    $sql = "SELECT * FROM user_table";
+    $statement = $db->prepare($sql);
+  }
   $statement->execute();
   $row = $statement->fetchAll();
   return $row;

@@ -2,7 +2,7 @@
 
 //1.  DB接続します
 try {
-  $pdo = new PDO('mysql:dbname=dirma;charset=utf8;host=dirma.mysql.database.azure.com','dirmauser@dirma','x3pzb24m');
+  $pdo = new PDO('mysql:dbname=dirma;charset=utf8;host=dirma.mysql.database.azure.com','dirma@dirma','gQftwMT+Zn#4');
 //注意：ホストは、サクラに繋いだらそれになる。ルート、そのあとのスペースは指定
 } catch (PDOException $e) {
   exit('DbConnectError:'.$e->getMessage());

@@ -82,8 +82,8 @@ foreach($job_array as $key => $detaile_array){
     <div class="container">
       <div id="search" class="row">
 
-        <div class="col-md-4">
-          <div id="job" class="col-md-4">
+        <div class="col-md-4 col-sm-12">
+          <div id="job">
             <h4 id="jobs">求人内容で検索</h4>
             <form method="post">
 
@@ -183,7 +183,7 @@ foreach($job_array as $key => $detaile_array){
           </div>
         </div>
 
-        <div class="col-md-6">
+        <div class="col-md-6 col-sm-12">
           <div id="company">
 
             <h4 id="coms">企業名で検索</h4>
@@ -223,7 +223,7 @@ foreach($job_array as $key => $detaile_array){
 
     <!-- 検索結果 -->
     <div id="divtable">
-      <div class="container">
+      <div class="container-fluid">
         <div id="result-view">
           <table class="table table-hover">
             <thead>

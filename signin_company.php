@@ -16,7 +16,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 		session_regenerate_id(true);
 		$_SESSION['company_id'] = $company_id;
 		$_SESSION['sess_id'] = session_id();
-		$company_url = "company_page.php";
+    $company_url = "company_page.php?page=company_mypage";
     header("Location: {$company_url}");
 		exit;
 	}

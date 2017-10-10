@@ -3,7 +3,6 @@
 $company_info = getCompanyAll($_SESSION['company_id']);
 
 $user_view = '';
-$osusume = rand ( 30 , 90 );
 $user_array = getUserInfo(30);
 //ChromePhp::log($user_array);
 foreach($user_array as $key => $value){
@@ -37,8 +36,8 @@ foreach($user_array as $key => $value){
                     <p class="text-muted">最終学歴：'.$value['school'].'　'.$value['department'].'</p>
                   </div>
                   <a href="company_page.php?page=company_messages&box=nice&uid='.$value['id'].'"><button type="button" class="btn btn-primary btn-xs btn-update btn-add-card">メッセージを送る</button></a>
-                  <button type="button" class="btn btn-primary btn-xs btn-update btn-add-card" data-toggle="modal" data-target="#profile'.$value['id'].'">　　詳細　　</button>
-                  <button type="button" class="btn btn-primary btn-xs btn-update btn-add-card" data-toggle="modal" data-target="#message'.$value['id'].'">　対応依頼　</button>
+                  <button type="button" class="btn btn-primary btn-xs btn-update btn-add-card" data-toggle="modal" data-target="#profile'.$value['id'].'">　詳細　</button>
+                  <button type="button" class="btn btn-primary btn-xs btn-update btn-add-card" data-toggle="modal" data-target="#message'.$value['id'].'">　人事へ依頼　</button>
                   <!-- モーダルウィンドウの中身 -->
                   <div class="modal fade" id="profile'.$value['id'].'">
                     <div class="modal-dialog">

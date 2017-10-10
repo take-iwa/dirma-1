@@ -1,3 +1,15 @@
+a {
+  text-decoration: none;
+}
+
+a:link {
+  color: #666666;
+}
+
+a:visited {
+  color: #666666;
+}
+
 .well {
   min-height: 20px;
   padding: 0px;
@@ -104,6 +116,7 @@ p {
   padding: 5px 0;
   height: 30px;
   text-align:center;
+  border-radius:15px;
 }
 @media screen and (min-width: 768px) {
   #adv-search {

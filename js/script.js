@@ -51,7 +51,7 @@ $(function(){
     })
     .done(function(data){
       $('#result-view').remove();
-      $('#divtable').append('<div class="container"><div id="result-view"></div></div>');
+      $('#divtable').append('<div class="container-fluid"><div id="result-view"></div></div>');
       $('#result-view').append('<table class="table"><thead><tr><th class="col-md-2">社名・募集ポジション</th><th class="col-md-3">仕事内容</th><th class="col-md-3">求める人物・経験</th><th class="col-md-2">想定年収</th><th class="col-md-1">勤務地</th><th class="col-md-1">詳細情報</th></tr></thead><tbody id="job_table_body"></tbody></table>');
       $('#job_table_body').append(data);
     })
@@ -76,7 +76,7 @@ $(function(){
     })
       .done(function(data){
       $('#result-view').remove();
-      $('#divtable').append('<div class="container"><div id="result-view"></div></div>');
+      $('#divtable').append('<div class="container-fluid"><div id="result-view"></div></div>');
       $('#result-view').append('<table class="table"><thead><tr><th class="col-md-2">社名・募集ポジション</th><th class="col-md-3">仕事内容</th><th class="col-md-3">求める人物・経験</th><th class="col-md-2">想定年収</th><th class="col-md-1">勤務地</th><th class="col-md-1">詳細情報</th></tr></thead><tbody id="job_table_body"></tbody></table>');
       $('#job_table_body').append(data);
     })

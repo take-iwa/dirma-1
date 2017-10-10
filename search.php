@@ -19,8 +19,8 @@ foreach($job_array as $key => $detaile_array){
   $view .= '<td>'.$detaile_array["wanted"].'</td>';
   $view .= '<td>'.$detaile_array["comp_min"].'〜'.$detaile_array["comp_max"].'万円</td>';
   $view .= '<td>'.$detaile_array["workplace"].'</td>';
-  $view .= '<td><a href="jobdetail/jobdetail_fr_0001.php" class="btn btn-info btn-jobdetaile">Dirma取材<br>職種詳細</a><br>
-    <a href="https://www.fastretailing.com/employment/ja/fastretailing/jp/career/corporate/joblist/detail/?id=627" class="btn btn-success btn-corp">企業サイト<br>職種詳細</a></td>';
+  $view .= '<td><a href="jobdetail/jobdetail_'.$detaile_array["jobid"].'.php" class="btn btn-info btn-jobdetaile">Dirma取材<br>職種詳細</a><br>
+    <a href="'.$detaile_array["offer_page"].'" class="btn btn-success btn-corp">企業サイト<br>職種詳細</a></td>';
   $view .='</tr>';
 }
 
@@ -82,7 +82,7 @@ foreach($job_array as $key => $detaile_array){
     <div class="container">
       <div id="search" class="row">
 
-        <div class="col-md-4 col-sm-12">
+        <div class="col-md-4 col-sx-12">
           <div id="job">
             <h4 id="jobs">求人内容で検索</h4>
             <form method="post">

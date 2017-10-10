@@ -34,8 +34,8 @@ if($status==false){
     $view .= '<td>'.$result["wanted"].'</td>';
     $view .= '<td>'.$result["comp_min"].'〜'.$result["comp_max"].'万円</td>';
     $view .= '<td>'.$result["workplace"].'</td>';
-    $view .= '<td><a href="jobdetail/jobdetail_fr_0001.php" class="btn btn-info btn-jobdetaile">Dirma取材<br>職種詳細</a><br>
-    <a href="https://www.fastretailing.com/employment/ja/fastretailing/jp/career/corporate/joblist/detail/?id=627" class="btn btn-success btn-corp">企業サイト<br>職種詳細</a></td>';
+    $view .= '<td><a href="jobdetail/jobdetail_'.$result["jobid"].'.php" class="btn btn-info btn-jobdetaile">Dirma取材<br>職種詳細</a><br>
+    <a href="'.$result["offer_page"].'" class="btn btn-success btn-corp">企業サイト<br>職種詳細</a></td>';
     $view .='</tr>';
   }
 }

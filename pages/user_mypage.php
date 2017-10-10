@@ -8,20 +8,36 @@ $job_view = '';
 $job_array = getNewJobInfo(2);
 //ChromePhp::log($job_array);
 //1件目
-$job_view .= '<a href="'.'jobdetail/jobdetail_fr_0001.php'.'"><div id="'.$job_array[0]['id'].'" class="col-sm-5 lib-item" data-category="view"><div class="lib-panel"><div class="row box-shadow"><div class="col-md-6">';
-$job_view .= '<img class="img-responsive img-rounded" src="'.$job_array[0]['img_url'].'">';
-$job_view .= '</div><div class="col-md-6"><div class="lib-row lib-header"><h4>';
+$job_view .= '<a href="'.'jobdetail/jobdetail_fr_0001.php'.'">
+<div id="'.$job_array[0]['id'].'" class="col-sm-5 lib-item" data-category="view">
+<div class="lib-panel">
+<div class="row box-shadow">
+<div class="col-md-6">';
+$job_view .= '<img class="img-responsive" src="'.$job_array[0]['img_url'].'">';
+$job_view .= '<div class="bar-charts" style="width:55%;background-color:#fce6b4;">適合率：53%</div>';
+$job_view .= '</div>
+<div class="col-md-6">
+<div class="lib-row lib-header"><h4>';
 $job_view .= $job_array[0]['corporate'];
-$job_view .= '</h4><div class="lib-header-seperator"></div></div><div class="lib-row lib-desc">';
+$job_view .= '</h4><div class="lib-header-seperator">
+</div>
+</div>
+<div class="lib-row lib-desc">';
 $job_view .= '</p><p>ポジション：'.$job_array[0]['job_title'].'</p>';
 $job_view .= '<p>勤務地：'.$job_array[0]['workplace'].'</p>';
 $job_view .= '<p>想定年収：'.$job_array[0]['comp_min'].'~'.$job_array[0]['comp_max'].'万円</p>';
 $job_view .= '<p>仕事内容：'.mb_substr($job_array[0]['job_contents'], 0, 30).'...</p>';
-$job_view .= '</div></div></div></div></div></a>';
+$job_view .= '</div>
+</div>
+</div>
+</div>
+</div>
+</a>';
 $job_view .= '<div class="col-md-1"></div>';
 //2件目
-$job_view .= '<a href="'.'jobdetail/jobdetail_fr_0001.php'.'"><div id="'.$job_array[1]['id'].'" class="col-sm-5 lib-item" data-category="ui"><div class="lib-panel"><div class="row box-shadow"><div class="col-md-6">';
-$job_view .= '<img class="img-responsive img-rounded" src="'.$job_array[1]['img_url'].'">';
+$job_view .= '<a href="'.'jobdetail/jobdetail_so_0001.php'.'"><div id="'.$job_array[1]['id'].'" class="col-sm-5 lib-item" data-category="ui"><div class="lib-panel"><div class="row box-shadow"><div class="col-md-6">';
+$job_view .= '<img class="img-responsive" src="'.$job_array[1]['img_url'].'">';
+$job_view .= '<div class="bar-charts best-match" style="width:85%;background-color:#b5dede;">適合率：85%</div>';
 $job_view .= '</div><div class="col-md-6"><div class="lib-row lib-header"><h4>';
 $job_view .= $job_array[1]['corporate'];
 $job_view .= '</h4><div class="lib-header-seperator"></div></div><div class="lib-row lib-desc">';
@@ -39,8 +55,9 @@ if (!$user_info['desired_job'] ==""){
   //ChromePhp::log($user_info['desired_job']);
   //ChromePhp::log($dirma_array);
   //1件目
-  $dirma_view = '<a href="'.'jobdetail/jobdetail_fr_0001.php'.'"><div id="'.$dirma_array[0]['id'].'" class="col-sm-5 lib-item" data-category="view"><div class="lib-panel"><div class="row box-shadow"><div class="col-md-6">';
+  $dirma_view = '<a href="'.'jobdetail/jobdetail_sb_0001.php'.'"><div id="'.$dirma_array[0]['id'].'" class="col-sm-5 lib-item" data-category="view"><div class="lib-panel"><div class="row box-shadow"><div class="col-md-6">';
   $dirma_view .= '<img class="img-responsive" src="'.$dirma_array[0]['img_url'].'">';
+  $dirma_view .= '<div class="bar-charts good-match" style="width:75%;background-color:#b5dede;">適合率：75%</div>';
   $dirma_view .= '</div><div class="col-md-6"><div class="lib-row lib-header"><h4>';
   $dirma_view .= $dirma_array[0]['corporate'];
   $dirma_view .= '</h4><div class="lib-header-seperator"></div></div><div class="lib-row lib-desc">';
@@ -51,8 +68,9 @@ if (!$user_info['desired_job'] ==""){
   $dirma_view .= '</div></div></div></div></div></a>';
   $dirma_view .= '<div class="col-md-1"></div>';
   //2件目
-  $dirma_view .= '<a href="'.'jobdetail/jobdetail_fr_0001.php'.'"><div id="'.$dirma_array[1]['id'].'" class="col-sm-5 lib-item" data-category="ui"><div class="lib-panel"><div class="row box-shadow"><div class="col-md-6">';
+  $dirma_view .= '<a href="'.'jobdetail/jobdetail_so_0001.php'.'"><div id="'.$dirma_array[1]['id'].'" class="col-sm-5 lib-item" data-category="ui"><div class="lib-panel"><div class="row box-shadow"><div class="col-md-6">';
   $dirma_view .= '<img class="img-responsive" src="'.$dirma_array[1]['img_url'].'">';
+  $dirma_view .= '<div class="bar-charts best-match" style="width:85%;background-color:#b5dede;">適合率：85%</div>';
   $dirma_view .= '</div><div class="col-md-6"><div class="lib-row lib-header"><h4>';
   $dirma_view .= $dirma_array[1]['corporate'];
   $dirma_view .= '</h4><div class="lib-header-seperator"></div></div><div class="lib-row lib-desc">';
@@ -71,7 +89,7 @@ if (!$user_info['desired_job'] ==""){
     <li role="presentation" class="active"><a href="#"><span class="glyphicon glyphicon-tasks" aria-hidden="true"></span> マイページ</a></li>
     <li role="presentation"><a href="user_page.php?page=user_messages&box=inbox"><span class="glyphicon glyphicon-envelope" aria-hidden="true"></span> メッセージ<span class="badge"></span></a></li>
     <li role="presentation"><a href="search.php"><span class="glyphicon glyphicon-search" aria-hidden="true"></span> 求人検索</a></li>
-    <li role="presentation"><a href="user_page.php?page=user_profile"><span class="glyphicon glyphicon-user" aria-hidden="true"></span> プロフィール</a></li>
+    <li role="presentation"><a href="user_page.php?page=user_profile"><span class="glyphicon glyphicon-hand-right" aria-hidden="true"></span> プロフィール</a></li>
   </ul>
 
   <div class="alert alert-success hidden" role="alert">
@@ -87,8 +105,8 @@ if (!$user_info['desired_job'] ==""){
     <strong>Oh snap!</strong> Change a few things up and try submitting again.
   </div>
 
-  <div class="row page-header">
-    <h4>新着求人情報</h4>
+  <div class="row page-header" style="margin-top:10px">
+    <h3><span class="glyphicon glyphicon-bullhorn" aria-hidden="true"></span> 新着求人情報</h3>
   </div>
 
   <div class="row row-margin">
@@ -96,7 +114,7 @@ if (!$user_info['desired_job'] ==""){
   </div>
 
   <div class="row page-header">
-    <h4>DIRMAからのおすすめ</h4>
+    <h3><span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span> DIRMAからのおすすめ</h3>
   </div>
     
   <div class="row row-margin">

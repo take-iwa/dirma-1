@@ -40,7 +40,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
   <body>
     <div id="main" class="wrapper">
-      <div class="column left-column">
+      <div class="column left-column hidden-xs">
         <div class="row">
           <div class="col-sm-6 col-md-push-3">
             <img src="./img/dirma_logo.png" class="logo img-responsive">

@@ -28,10 +28,11 @@ foreach($job_array as $key => $detaile_array){
 
 
   <!DOCTYPE html>
-  <html lang="en">
+  <html lang="jp">
 
   <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
     <title>DIRMA-検索</title>
 
     <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>

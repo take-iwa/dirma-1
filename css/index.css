@@ -471,7 +471,7 @@ section {
   font: 12px;
 }
 
-@media screen and (max-width:700px) {
+@media screen and (max-width:600px) {
   body{
     letter-spacing: 0.01em;
   }
@@ -513,11 +513,13 @@ section {
     margin: 10px;
   }
   .button_left {
+    font-size: 10px;
     letter-spacing: 0.1em;
     padding: 15px 0px;
     text-align: center;
   }
   .button_right {
+    font-size: 10px;
     letter-spacing: 0.3em;
     padding: 15px 25px;
     text-align: center;
